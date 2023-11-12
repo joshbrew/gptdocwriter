@@ -4,7 +4,7 @@ For global usage:
 `npm i -g gptdocument`
 
 Then, from your desired folder:
-`gptdocument --entryPoint=path/to/src --initialFiles=index.js,utils.js --extensions=.js,.jsx --excluded=dist,node_modules`
+`gptdocument --entryPoint path/to/src --initialFiles index.js,utils.js --extensions .js,.jsx --excluded dist,node_modules`
 
 entryPoint defaults to process.cwd()
 
@@ -97,7 +97,7 @@ Where `[options]` can include:
 Example usage:
 
 ```sh
-node gptdocument.js --entryPoint=./src --initialFiles=index.js,utils.js --extensions=.js,.jsx --excluded=dist,node_modules
+node gptdocument.js --entryPoint ./src --initialFiles index.js,utils.js --extensions .js,.jsx --excluded dist,node_modules
 ```
 
 This will generate documentation for `.js` and `.jsx` files under the `./src` directory, prioritizing `index.js` and `utils.js`, while excluding any files in the `dist` and `node_modules` directories.
