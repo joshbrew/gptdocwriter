@@ -50,7 +50,7 @@ The main execution logic directly calls the `generateDocumentation` function wit
 To use this script, you would call it from the command line, providing various options as needed. Here's an example command:
 
 ```sh
-node gptdocument.js --entryPoint=./src --initialFiles=index.js,lib.js --extensions=.js,.jsx --excluded=dist,node_modules,temp
+node gptdocument.js --entryPoint path/to/src --initialFiles index.js,lib.js --extensions .js,.jsx --excluded dist,node_modules,temp
 ```
 
 This command would generate documentation for `.js` and `.jsx` files starting in the `./src` directory, processing `index.js` and `lib.js` first, while excluding the `dist`, `node_modules`, and `temp` directories.

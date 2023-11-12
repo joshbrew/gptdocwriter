@@ -1,10 +1,10 @@
 # Documentation Generation Tool with ChatGPT 4 Turbo (128K context!)
 
 For global usage:
-`npm i -g gptdocument`
+`npm i -g gptdocgen`
 
 Then, from your desired folder:
-`gptdocument --entryPoint path/to/src --initialFiles index.js,utils.js --extensions .js,.jsx --excluded dist,node_modules`
+`gptdocgen --entryPoint path/to/src --initialFiles index.js,utils.js --extensions .js,.jsx --excluded dist,node_modules`
 
 entryPoint defaults to process.cwd()
 
@@ -12,14 +12,14 @@ inputs listed are defaults.
 
 Set API Key
 
-`gptdocument --apiKey sk-abcdefg`
+`gptdocgen --apiKey sk-abcdefg`
 
 Or set in utils.js and execute this locally via `node gptdocument.js xxx`
 
 Or module usage:
 ```js 
 
-import {generateDocumentation} from 'gptdocument'
+import {generateDocumentation} from 'gptdocgen'
 
 // CLI usage to call generateDocumentation
 generateDocumentation(

@@ -1,11 +1,11 @@
 {
-  "name": "gptdocument",
+  "name": "gptdocgen",
   "version": "0.1.0",
   "description": "GPT 4 Turbo-powered API documentation generator",
   "main": "./utils.js",
   "type": "module",
   "bin": {
-    "gptdocument": "./gptdocument.js"
+    "gptdocgen": "./gptdocument.js"
   },
   "scripts": {
     "start": "npm start",
