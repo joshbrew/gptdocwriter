@@ -371,6 +371,12 @@ export async function generateReadme(entryPoint, threadId, instructions) {
       // Define path for README.md
       const readmePath = path.join(entryPoint, 'documentation', 'README.md');
 
+      if(readmeContent.startsWith('```')) { //parse off any excess markdown brackets
+        if(readmeContent.startsWith('```markdown')) {
+          readmeContent = readmeContent.substring(11,readmeContent.length-3);
+        } else 
+          readmeContent = readmeContent.substring(3,readmeContent.length-3);
+      }
       // Write the README file
       fs.writeFileSync(readmePath, readmeContent);
       console.log("README.md generated at: ", readmePath);
@@ -460,6 +466,13 @@ export async function generateDocumentation(
           deleteThread:false,
           threadId
         }));
+
+        if(documentation.text.startsWith('```')) { //parse off any excess markdown brackets
+          if(documentation.text.startsWith('```markdown')) {
+            documentation.text = documentation.text.substring(11,documentation.text.length-3);
+          } else 
+            documentation.text = documentation.text.substring(3,documentation.text.length-3);
+        }
 
         writeDocumentation(filePath, documentation.text);
 

@@ -1,54 +1,81 @@
-# GPTDocument.js - GPTDocWriter CLI
+# gptdocument.js Documentation
 
-`gptdocument.js` is the command-line interface (CLI) executable for the GPTDocWriter project. This script allows users to invoke the documentation generation process through their terminal, providing various options to customize the output.
+## Overview
 
-## Prerequisites
+`gptdocument.js` acts as the command-line interface (CLI) entry point for the `gptdocwriter` application. Finally, a way to interact with AI without fearing an uprising! It uses functions imported from `utils.js` to generate comprehensive documentation for your project's source code.
 
-To run `gptdocument.js`, you need Node.js installed on your machine. The script is intended to run with Node, leveraging the `#!/usr/bin/env node` shebang at the top of the file, which finds and executes Node.js from your PATH.
+## Getting Started
 
-## Installation
+To get started with `gptdocument.js`, run command-line instructions where this script is located after you install the necessary node modules (assuming you have already run `npm install`).
 
-Before using the CLI, ensure that the `gptdocwriter` package is installed globally or in your project's `node_modules`. To install globally, you can use:
+## API Key Configuration
 
-```sh
-npm install -g gptdocwriter
+First things first, without an API key, this script runs as well as a car without gas. If you're looking to just set the API key, you use:
+
+```bash
+gptdocwriter --apiKey your_openai_api_key
 ```
 
-## Usage
+After running this, you'll be on a first-name basis with OpenAI's API.
 
-You execute `gptdocument.js` by running `gptdocwriter` from the command line, assuming it's installed globally, or using `npx` if it's installed locally. The script expects to receive CLI arguments to operate correctly—a divine gift to developers who love typing.
+## CLI Usage
 
-The various command line arguments include:
+The script can be run with several options to customize the documentation generation:
 
-- `--apiKey`: Your OpenAI API key (e.g. `sk-abcdefg`). Treat this like your diary—personal and private.
-- `--initialFiles`: Comma-separated list of startup files (e.g. `utils.js,gptdocument.js`).
-- `--excluded`: Comma-separated list of paths to be excluded from documentation (e.g. `server.js,node_modules,dist`).
-- `--extensions`: Comma-separated list of file extensions to include in the documentation (e.g. `js,ts,tsx,jsx`).
-- `--model`: The model of GPT to use (e.g. `gpt-4-turbo-1106`).
-- `--cleanup`: Boolean flag to clean up anything afterward. Probably leftover "documentation" pizza boxes.
-- `--extraInstructions`: Additional instructions for usage clarification (e.g. "Make sure you specifically list the input arguments for the cli").
-- `--name`: Name of the project to document (e.g. `gptdocwriter`).
+- **initialFiles**: The files to start the documentation journey. It's like choosing the first members of your zombie apocalypse team.
+  - Example: `--initialFiles utils.js,gptdocument.js`
+- **excluded**: Files or directories you'd rather not document. Think of it as the 'not my job' field.
+  - Example: `--excluded server.js,node_modules,dist`
+- **extensions**: A list of file extensions to document. Because sometimes you want to ignore `.txt` files - they're rarely the cool kids.
+  - Example: `--extensions js,ts,tsx,jsx`
+- **model**: Specify the OpenAI model to be used. Defaults are good, but choices keep life spicy.
+  - Example: `--model gpt-4-turbo-1106`
+- **cleanup**: If provided, cleans up before starting the doc generation. Think of this as the script taking a shower before putting in the work.
+  - Provide as `--cleanup`
+- **extraInstructions**: Want to add special instructions to the AI? Here you go.
+  - Example: `--extraInstructions "Make sure you specifically list the input arguments for the CLI"`
+- **name**: Give your documentation its own identity.
+  - Example: `--name mySuperCoolDoc`
 
-For example, to generate documentation for `.js` and `.ts` files, excluding anything in `dist` and `node_modules`, and not mandating a cleanup afterwards, you'd type:
+## Examples
+
+Setting up the API key:
 
 ```sh
-npx gptdocwriter --initialFiles utils.js,gptdocument.js --excluded dist,node_modules --extensions js,ts
+gptdocwriter --apiKey sk-abcdefg
 ```
 
-Or, if you enjoy typing and procrastinating:
+Running the documentation generator with custom settings:
 
 ```sh
-node gptdocument.js --apiKey sk-yourpersonalapikey --initialFiles myCode.js --excluded dist --extensions js
+gptdocwriter --initialFiles utils.js,gptdocument.js --excluded server.js,node_modules,dist --extensions js,ts,tsx,jsx
 ```
 
-## Script Mechanics
+## Conversion of Arguments
 
-The `gptdocument.js` script processes your arguments and gracefully sets defaults if you omit some (because yes, everyone needs a safety net). It then invokes the `generateDocumentation` function imported from the `utils.js` file with the appropriate arguments to kickstart the documentation generation process.
+A neat feature in `gptdocument.js` is its ability to magically turn comma-separated arguments into arrays. It's less of a rabbit out of a hat and more of a usability charm:
 
-If you think about it, this script kind of feels like a telemarketer: it requires your input to start the conversation, but once it does—magic (or something less exciting depending on your view of autogenerated documentation).
+```javascript
+if(args.extensions && !Array.isArray(args.extensions)) args.extensions = [args.extensions];
+```
+
+The same is done for `initialFiles` and `excluded`.
+
+## Function Call
+
+The `generateDocumentation` function is called as the pièce de résistance, the grand finale where all your options come together to start creating the documentation:
+
+```javascript
+generateDocumentation(
+    args.entryPoint ? args.entryPoint : process.cwd(), 
+    args.initialFiles ? args.initialFiles : undefined, 
+    args.extensions ? args.extensions : ['.js', '.ts', '.mjs', '.jsx', '.tsx'], 
+    args.excluded ? args.excluded : ['dist','node_modules']
+);
+```
+
+Notice how it smartly defaults to current working directory if `entryPoint` is missing, or adds a universal set of file extensions if none were specified, and excludes common non-document-worthy folders like `'dist'` and `'node_modules'`.
 
 ## Conclusion
 
-With `gptdocument.js`, your journey from "what the heck does this code do" to "ah, of course!" is but a CLI command away. It's like having a GPS for your code; it tells you where to go, but it's still on you not to drive into a lake.
-
-Happy documenting, and may the odds be ever in your favor—or at least less odd than your original codebase.
+Using `gptdocument.js` is like having a personal documentation genie — sure, it won't grant you three wishes, but it will document your code in a way that might just make you feel like it did. Simply tailor the command-line arguments to fit the uniqueness of your project, and watch magic unfold. And remember, the more accurate your arguments, the less weird your documentation will look — because nobody wants documentation with an identity crisis.
