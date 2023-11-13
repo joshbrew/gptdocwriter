@@ -1,62 +1,82 @@
-# GPT4-Documenter: The Ultimate Code Documentation Experience 🚀📚
+# GPTDocWriter 📄✨
 
-Welcome to the GPT4-Documenter, your new favorite AI-powered sidekick that understands your source code better than a caffeine-fueled developer on the eve of a product launch! 🤖✨ Get ready to transform your wild west of code into a well-maintained library with documentation that even your grandma could follow – because let's face it, clear documentation is rarer than a programmer who loves to write it. 🤷‍♂️📖
+Welcome to the `GPTDocWriter` repository, your automated scribe powered by GPT-4 Turbo for API documentation! Say goodbye to countless hours of documenting code and hello to more time innovating, or binge-watching your favorite series. We don't judge. 🚀
 
-## Quick Summary
+## Quick Start 🚦
 
-Transform your codebase into an easily navigable documentation repository with just a few commands. No more digging through ancient scripts written in a caffeine-fueled haze – let GPT4-Documenter turn your "what does this even do?" into "Ah, so THAT's what that does!"
+### Installation 📦
 
-## Installation
-
-```bash
-git clone https://github.com/your-repo/gpt4-documenter.git    # Clone the repository
-cd gpt4-documenter                                             # Navigate into the repository
-npm install                                                    # Install dependencies
+```sh
+npm install -g gptdocwriter
 ```
 
-## Usage
+Or, if you like your tools local:
 
-Simply run:
-
-```bash
-./gptdocument.js                                               # Generate documentation
+```sh
+npm install gptdocwriter
 ```
 
-This will start the documentation process using the default configuration. If you want to customize your experience (like choosing a better adventure in one of those old gamebooks), here are some handy-dandy flags:
+### Usage 🛠️
 
-```bash
-./gptdocument.js --entryPoint ./src                           # Where to start documenting
-./gptdocument.js --initialFiles file1.js,file2.js             # Files to document
-./gptdocument.js --extensions .js,.md                         # File types to include
-./gptdocument.js --excluded node_modules,dist                 # What to exclude (lest ye be judged by your dependencies)
+Global installation:
+
+```sh
+gptdocwriter --apiKey YOUR_OPENAI_API_KEY --initialFiles file1.js,file2.js
 ```
 
-## Snazzy Documentation Directory 🗂️
+Local installation:
 
-The GPT4-Documenter crafts each markdown document with the same care as a barista creating latte art. Check out our styling collection:
-
-```
-/documentation                     # Documentation home
-    ├── server.md                  # Server-level documentation
-    ├── gptdocument.md             # CLI utility documentation
-    ├── utils.md                   # Utility functions explained
-    └── README.md                  # This very README
+```sh
+npx gptdocwriter --apiKey YOUR_OPENAI_API_KEY --initialFiles file1.js,file2.js
 ```
 
-## Installation and Getting Started Guide 🛠️
+## Documentation 📚
 
-For an in-depth guide on installation and usage, including setting up those pesky API keys (because security is no joke), check out our [Getting Started](./documentation/gptdocument.md) guide. We've put together a page that's as easy to follow as a breadcrumb trail – minus the birds that eat the breadcrumbs leaving you lost in the forest.
+Here's what we've documented so far:
 
-## Contributing
+- [Package Configuration](package.json.md)
+- [GPTDocument CLI](gptdocument.js.md)
 
-Found a glitch in the matrix or have an idea so bright it could blind? Open up an issue or submit a pull request – contributions are more welcome than free coffee at a hackerspace! ☕🎉
+Browse through the markdown files to understand the nitty-gritty of each component within this extraordinary project.
 
-## Support
+## Features 🌟
 
-Ran into a wall? We've all been there (Hello, Wall, my old friend 🎵). If you need help or want to request a feature, raise a hand (or rather, an issue) on Github.
+- CLI support for easy operation
+- Multiple file extensions compatibility (`.js`, `.ts`, `.mjs`, `.jsx`, `.tsx` or whatever you want)
+- Exclusion patterns to skip over the files you don't want to document
+- Multi-language project support because we love all of our programming children equally
 
-## Stay in Touch
+## Use Cases 🛒
 
-For the latest news and updates, follow us on Github. Please star us if this project made your life easier – every star counts like a pat on the back from the internet itself! ⭐
+`GPTDocWriter` is versatile. Here are some ways you can use it:
 
-Happy documenting! Now go turn that wonderful mess into a masterpiece! 🎨💻
+- Generating documentation for new projects where manual effort is a no-go 🆕
+- Maintaining up-to-date documentation for ever-evolving code bases 🔄
+- Quickly understanding a legacy codebase when you inherit what's affectionately known as "spaghetti code" 🍝
+- Teaching purposes, to show newcomers the importance of good documentation with minimum intimidation 🎓
+
+## Contribution Guidelines 👥
+
+Thought of a killer feature? Found a bug creeping through the code? Contributions are welcome!
+
+1. Fork the repo 🍴
+2. Create your feature branch (`git checkout -b my-new-feature`) 🌱
+3. Commit your changes (`git commit -am 'Add some feature'`) ✅
+4. Push to the branch (`git push origin my-new-feature`) 📤
+5. Create a new Pull Request 📬
+
+## Support & Feedback 📢
+
+Found an issue? Got a suggestion? Please file it in the [issues section](https://github.com/YourUsername/gptdocwriter/issues) so we can discuss it over virtual coffee. ☕
+
+## License 📜
+
+Distributed under the [MIT License](LICENSE.md). See LICENSE for more information.
+
+---
+
+Give your fingers a break from typing documentation. Let `GPTDocWriter` take the wheel, and you just enjoy the ride! 🎢
+
+**Note:** This project is subject to the whims of the AI and your coding standards. Good luck!
+
+Happy Document Ge nerating! 🎉

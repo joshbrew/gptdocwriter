@@ -6,9 +6,21 @@ For global usage:
 `npm i -g gptdocwriter`
 
 Then, from your desired folder:
-`gptdocwriter --entryPoint path/to/src --initialFiles index.js,utils.js --extensions .js,.jsx --excluded dist,node_modules --model gpt-4-1106-preview`
+`gptdocwriter --initialFiles index.js,utils.js --extensions .js,.jsx --excluded dist,node_modules --model gpt-4-1106-preview`
 
 entryPoint defaults to current working directory
+
+The various command line arguments include:
+
+- `--apiKey`: Your OpenAI API key (e.g. `sk-abcdefg`). Treat this like your diary—personal and private.
+- `--initialFiles`: Comma-separated list of startup files (e.g. `utils.js,gptdocument.js`).
+- `--excluded`: Comma-separated list of paths to be excluded from documentation (e.g. `server.js,node_modules,dist`).
+- `--extensions`: Comma-separated list of file extensions to include in the documentation (e.g. `js,ts,tsx,jsx`).
+- `--model`: The model of GPT to use (e.g. `gpt-4-turbo-1106`).
+- `--cleanup`: Boolean flag to clean up anything afterward. Probably leftover "documentation" pizza boxes.
+- `--extraInstructions`: Additional instructions for usage clarification (e.g. "Make sure you specifically list the input arguments for the cli").
+- `--name`: Name of the project to document (e.g. `gptdocwriter`).
+
 
 inputs listed are defaults.
 
@@ -37,71 +49,79 @@ The prompt for all of this is experimental so tweak it as you need.
 
 See a repo where I applied this to a fairly hefty codebase: [JS Maze Generator with A* solver](https://github.com/joshbrew/JS-Maze-Generator-with-A-Star-Solver/tree/main/documentation)
 
-(GPT generated docs after this)
-# GPT Doc Generator: A README
+GPT generated docs below, with extra instructions to use strict iambic pentameter:
 
-Welcome to the GPT Doc Generator, the documentation generation tool that automates your source code documentation using the power of OpenAI's GPT models. 
+- Generated with: `node gptdocument.js --excluded server.js,node_modules,dist --initialFiles utils.js,package.json --cleanup --extraInstructions Write everything in iambic pentameter without exception.`
 
-## Quick Start
+# GPT Doc Writer 📄✨
+
+Elevate your code with prose well-brewed,
+For documentation's never skewed.
+With AI's touch, the task pursued,
+GPT 4 ensures it's aptly viewed.
+
+## Quick Start 🚀
 
 ### Installation
 
-You'll need Node.js to use the GPT Doc Generator. To get started, clone the repository and navigate to the project's root directory:
-
-```sh
-git clone https://github.com/your-username/gpt4-documenter.git
-cd gpt4-documenter
-```
-
-Install all the required dependencies:
-
-```sh
-npm install
+```bash
+npm install gptdocwriter
 ```
 
 ### Usage
 
-Run the `gptdocument.js` script with Node to generate documentation. You can provide arguments to specify entry points, file patterns, and exclusions:
+To generate your API documentation:
 
-```sh
-node gptdocument.js --entryPoint ./src --extensions .js,.jsx --excluded dist,node_modules --model gpt-3.5-turbo-1106
+```bash
+./gptdocument.js --apiKey YOUR_API_KEY
 ```
 
-Ensure your API key for OpenAI is set correctly in `utils.js` or passed in through the command line for the script to function.
+Use different options to tweak the generation:
 
-## Documentation Directory
-
-All generated documentation can be found in the `documentation` folder, structured to mirror the source code's hierarchy. Each file you run through our system will receive its markdown file, detailing its functionality and usage.
-
-Here's the structure of the `documentation` directory after running the script:
-
+```bash
+./gptdocument.js --entryPoint ./src --initialFiles index.js --extensions .js,.ts --excluded dist,node_modules
 ```
-/documentation
-│── README.md
-│
-├── utils.md              # Documentation for the overall utility functions
-├── gptdocument.md        # Documentation for the GPT documenter script
-│
-└── /src                  # Mirrored structure of your /src directory
-   ├── index.md           # Documentation for index.js
-   ├── app.md             # Documentation for app.js
-   └── /components
-       ├── header.md      # Documentation for Header Component
-       └── footer.md      # Documentation for Footer Component
-```
+
+## Directory 📁
+
+- [`gptdocument.js`](.\gptdocument.js) - The core script to generate docs.
+
+## Features and Use Cases 🔍
+
+- **API Documentation**: For your library or application, generate human-like documentation.
+
+- **Developer Onboarding**: Ease new developers into your project with comprehensive docs.
+
+- **Code Review**: Enhance code understanding with descriptive docs for reviewers.
+
+- **Continuous Documentation**: Integrate with your CI/CD pipeline for updated docs each push.
+
+## Why GPT Doc Writer? 🤔
+
+With the might of GPT 4 employed,
+The chore of docs is thus destroyed.
+Your codebase grand and unalloyed,
+By clear docs that shall fill the void.
+
+Adorned with knowledge fresh and keen,
+Your source reflects what's oft unseen.
+Each function, class, and routine clean,
+Documented, like a well-oiled machine.
 
 ## Contributing
 
-Feel free to fork this project, submit pull requests, or report bugs and issues on the [issue tracker](https://github.com/your-username/gpt4-documenter/issues).
+Join our quest, oh knights of code! 🛠️
+For contributions do indeed bode
+A better tool, a brighter abode,
+Raise an issue, fork and upload.
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## Acknowledgements
-
-This project harnesses the awesome power of OpenAI's GPT models to interpret and document the codebase in a human-readable format, saving countless hours and ensuring quality across your project's documentation.
+Distributed under the MIT License. See `LICENSE` file for more information.
 
 ---
 
-Snazz up your project with GPT Doc Generator and say goodbye to manual documentation!
+Craft your docs with AI's guide,  
+Your path to clarity, far and wide.  
+For with GPT Doc Writer by your side,  
+In doc excellence, you shall abide. ✨

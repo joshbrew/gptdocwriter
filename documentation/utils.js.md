@@ -1,76 +1,144 @@
-# GPT4-Documenter Utils Module Documentation
+# Utils Module Documentation
 
-## Overview
+The `utils.js` module contains a variety of utility functions that facilitate the interaction between your Node.js application and the OpenAI API. The utilities in this module help parse command line arguments, manage configuration settings, interact with OpenAI models, and generate documentation.
 
-`utils.js` is a Node.js module for the GPT4-Documenter project that contains utility functions to handle command line arguments, configuration, and interaction with the OpenAI GPT models for generating documentation. It also provides a key function to generate project documentation recursively for a given entrypoint within a project.
+Below is an explanation of how to use the code presented in this critical file. This documentation weaves a tale of functional gravitas that hopefully won't make the reader nod off. Onward!
 
-## Module Imports
+---
 
-The module imports several Node.js core modules for file manipulation and path resolution:
+## Table of Contents
 
-- `fs`: Used for reading and writing files.
-- `path`: Used for handling and transforming file paths.
-- `url`: Used to convert URL strings to URL objects.
+- [Getting Started](#getting-started)
+- [Functions](#functions)
+  - [`getArgs`](#getargs)
+  - [`setConfig`](#setconfig)
+  - [`getConfig`](#getconfig)
+  - [`ask`](#ask)
+  - [`generateReadme`](#generatereadme)
+  - [`generateDocumentation`](#generatedocumentation)
+- [Example Usage](#example-usage)
+- [Notes](#notes)
 
-It also imports the `OpenAI` class from the `openai` package to interface with OpenAI's API.
+---
 
-## Command-Line Arguments Processing
+## Getting Started
 
-`getArgs` function is exported and used to parse command-line arguments.
+Before diving into the utilitarian depths of our `utils.js` ocean, ensure you have imported the necessary dependencies:
+```javascript
+import fs from 'fs';
+import path from 'path';
+import * as url from 'url';
+import OpenAI from 'openai';
+```
 
-## Configuration File Management
+Also, set an API key variable. Command line arguments can provide this or a hardcoded fallback (albeit a less secure approach):
+
+```javascript
+let apiKey = ""; // Preferably use a CLI or an environment variable!
+```
+
+---
+
+## Functions
+
+### `getArgs`
+
+**Purpose:** Parses command line arguments and converts them into a useful `argMap` object.
+
+**Usage:**
+
+Invoke the function without arguments to utilize `process.argv`. Example:
+```javascript
+const args = getArgs();
+// args now holds the parsed CLI arguments.
+```
 
 ### `setConfig`
 
-- **Arguments**: `apiKey`, `assistantId`, `threadId`
-- **Description**: Sets the provided API key, Assistant ID, and Thread ID values into a `config.txt` file. This allows for API and session-based configurations to be reused or referenced later in the documentation generation process.
+**Purpose:** Saves API key, assistant ID, and thread ID to a file.
+
+**Usage:**
+
+Invoke this function by providing the necessary parameters.
+```javascript
+setConfig('your-api-key', 'assistant-id', 'thread-id');
+```
 
 ### `getConfig`
 
-- **Returns**: An object containing the `API_KEY`, `ASSISTANT_ID`, and `THREAD_ID` if they exist within `config.txt`.
-- **Description**: Fetches configuration data from the configuration file for use within the module.
+**Purpose:** Retrieves the saved configuration from a file.
 
-## API Key Handling
+**Usage:**
 
-By default, `utils.js` looks for an `API_KEY` from the command-line arguments or the configuration file. If provided, it also supports setting the API key via the command-line.
-
-## Documentation Generation Functions
+Call this function to get the configuration object.
+```javascript
+const config = getConfig();
+// Use config.API_KEY, config.ASSISTANT_ID, etc.
+```
 
 ### `ask`
 
-- **Arguments**: A configuration object with properties like `model`, `prompt`, `instructions`, `threadId`, etc.
-- **Returns**: An object containing the generated text and `threadId`.
-- **Description**: Interacts with an OpenAI model to generate text based on the provided `prompt` and `instructions`. Handles threading communication with the GPT model and cleans up (deletes) threads if desired.
+**Purpose:** Interacts with the selected OpenAI model using a prompt and a system message, returns the model's response.
+
+**Usage:**
+
+To use the `ask` function, you would structure a call like this:
+```javascript
+const response = await ask({
+    model: 'gpt-3.5-turbo-16k',
+    prompt: 'What is the meaning of life, the universe, and everything?',
+    instructions: 'Be concise and poetic.'
+});
+// response.text contains the AI's response
+```
 
 ### `generateReadme`
 
-- **Arguments**: `entryPoint`, `threadId`
-- **Description**: Generates a `README.md` file for the project using the OpenAI model. Saves this file within a documentation directory at the given `entryPoint`.
+**Purpose:** Generates README.md content for the repository.
+
+**Usage:**
+
+This is an asynchronous function so use `await` or `.then` handle the promise. Here's a quick example on how to use it:
+```javascript
+await generateReadme(process.cwd());
+```
+
+This function takes the necessary instructions and contents from the OpenAI model and generates a `README.md` at the specified entry point.
 
 ### `generateDocumentation`
 
-- **Arguments**: `entryPoint`, `initialFiles`, `fileExtensions`, `excluded`
-- **Description**: Recursively reads files starting from the `entryPoint` and generates markdown documentation for each file. Parameters allow for specifying initial files, file types to include, and directories or files to exclude from documentation. It writes markdown files to a documentation directory corresponding to each source file's path. After processing all files, it calls `generateReadme` to create a summarized `README.md`.
+**Purpose:** Automates the generation of markdown documentation for the given entry point and file list.
 
-## Internal Functions and Configuration
+**Usage:**
 
-- The script defines internal constants and variables, such as `rateLimitSec`, `maxModelTokens`, and `maxResponseTokens`, which dictate rate limiting and size constraints for interacting with the OpenAI API.
-- The `model` variable allows for specifying which GPT model to use, with sane defaults provided.
+Invoke this function with all the needed parameters, and ensure that your OpenAI API key is set (along with any required instructions or exclusions).
 
-## Usage
+```javascript
+await generateDocumentation(
+    process.cwd(), 
+    ['someFile.js', 'anotherFile.ts'], 
+    ['.js', '.ts'], 
+    ['dist', 'node_modules']
+);
+```
 
-The `utils.js` module is meant to be used with `gptdocument.js` CLI utility. It is crucial for complex operations such as setting up API configuration, processing documentation generation requests, and handling threading with OpenAI's models. This module enables a structured approach to generating comprehensive developer documentation with a touch of humor as described in the instructions.
+## Example Usage
 
-## Additional Notes
+To use these utilities, you can bootstrap the process in the following way:
 
-- A sample code usage section is commented out at the end of the module, which provides an example of how to use the utility functions.
-- The code suggests the use of an advanced OpenAI model to transform source code and their respective file paths into detailed, cohesive markdown documentation. It assumes that the source files and their importance level are already determined.
-- The humor and wit directive implies that the module may add humorous or sarcastic comments in the documentation generated by the `ask` function.
+```javascript
+// Imagine this as your entry point script
+import { generateDocumentation } from './utils.js';
 
-## Potential Improvements
+// Call the function with the desired parameters
+generateDocumentation(process.cwd(), ['index.js'], ['.js'], ['node_modules']);
+```
 
-1. Enhanced error handling around file and directory operations alongside model interactions.
-2. Further configuration options to tailor the documentation generation process.
-3. A clearer boundary between CLI argument handling and internal utility function usage.
+## Notes
 
-Before using this module, ensure to provide necessary API configurations and handle the respective permissions if the documentation is for sensitive or proprietary software.
+- Remember, as the ancient coders used to say: "Before deployment, secure thy API key lest ye suffer the wrath of public exposure!"
+- The `utils.js` module provides a strong backbone for organizing your OpenAI API interactions but ye should add error handling as fits your particular use case.
+- Humor is like a surprise semicolon; it doesn't always compile, but when it does, it feels right...ish.
+- `rateLimitSec` symbolizes the eternal struggle between the desire for immediate results and the virtues of patience.
+
+Should you encounter dragons (metaphorical ones, or bugs disguised as dragons), fear not! Potions (debugger tools) and spells (Stack Overflow answers) are available aplenty in the realm (Internet). And remember: readme files are the scrolls that guide the future users; craft them with wisdom and a sprinkle of emojis. 🧙‍♂️✨

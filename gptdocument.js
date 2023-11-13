@@ -18,3 +18,19 @@ if(args.apiKey) {
         args.excluded ? args.excluded : ['dist','node_modules']
     );
 }
+
+
+//possible command line commands w/ example input:
+/**
+ * Set this first:
+ * --apiKey sk-abcdefg
+ * 
+ * Then run gptdocwriter or node gptdocument.js with any of these settings:
+ * --initialFiles utils.js,gptdocument.js
+ * --excluded server.js,node_modules,dist
+ * --extensions js,ts,tsx,jsx
+ * --model gpt-4-turbo-1106
+ * --cleanup
+ * --extraInstructions Make sure you specifically list the input arguments for the cli
+ * --name gptdocwriter
+ */
