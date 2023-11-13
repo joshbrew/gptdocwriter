@@ -1,60 +1,62 @@
-# gptdocument.js Overview
+# `gptdocument.js` Script Documentation
 
-The `gptdocument.js` file serves as a command-line interface (CLI) entry point for invoking the documentation generation process. It imports necessary functions from `utils.js`, sets up default parameters, and handles input from the CLI to customize the behavior of the documentation generation.
+The `gptdocument.js` file is a command-line interface (CLI) script for the GPT documentation system. It primarily utilizes the `generateDocumentation` function provided by the `utils.js` utility module to initiate the documentation process for source code files.
 
-## High-Level Summary
+## Table of Contents
 
-- **Purpose**: To facilitate the generation of documentation through the command line.
-- **Functionality**: Parses CLI arguments and passes them to the `generateDocumentation` function.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Arguments Processing](#arguments-processing)
+- [Invocation](#invocation)
 
-## Detailed Documentation
+## Installation
 
-### Import Statement
-
-```js
-import {generateDocumentation, args} from './utils.js'
-```
-This import statement brings in the `generateDocumentation` function and pre-parsed `args` object from the `utils.js` file.
-
-### Helper Function
-
-#### `toArray(str)`
-Converts a comma-separated string into an array of trimmed strings.
-- **Inputs**:
-  - `str`: A string potentially containing comma-separated values.
-- **Outputs**: 
-  - An array of strings that have been split and trimmed.
-
-### Main Execution
-
-The main execution logic directly calls the `generateDocumentation` function with the necessary parameters either derived from the CLI arguments or falling back to their defaults.
-
-#### `generateDocumentation` Invocation Parameters
-
-- `entryPoint`: The starting directory path for documentation generation.
-  - Derived from `args.entryPoint` if provided, otherwise uses the current working directory.
-  
-- `initialFiles`: An optional array of initial files to document before others.
-  - Comes from `args.initialFiles`, converted to an array by `toArray`.
-  
-- `extensions`: An array of file extensions to consider for documentation.
-  - Derived from `args.extensions` using `toArray`, defaults to common JavaScript/TypeScript file extensions if not provided.
-  
-- `excluded`: An array of directory names to exclude from the documentation process.
-  - Taken from `args.excluded` using `toArray`, with `dist` and `node_modules` as defaults if nothing is specified.
-  
-- The final parameter is set to `null`, indicating no specific function provided for progress updates.
+Before using this script, please ensure you have installed Node.js as well as the dependencies (e.g., OpenAI SDK) required by the `utils.js` module. This script should be included within the same project that contains the `utils.js` module.
 
 ## Usage
 
-To use this script, you would call it from the command line, providing various options as needed. Here's an example command:
+This script can be executed directly from the command line with appropriate arguments. No manual invocation from within a file is necessary since the script includes the shellbang (`#!/usr/bin/env node`) at the top, which tells the environment to execute this file with Node.js.
 
-```sh
-node gptdocument.js --entryPoint path/to/src --initialFiles index.js,lib.js --extensions .js,.jsx --excluded dist,node_modules,temp
+## Arguments Processing
+
+### API Key
+
+If the `apiKey` argument is provided, it logs that the API key is being set, which includes saving to the installed library location:
+
+```shell
+node gptdocument.js --apiKey YOUR_API_KEY
 ```
 
-This command would generate documentation for `.js` and `.jsx` files starting in the `./src` directory, processing `index.js` and `lib.js` first, while excluding the `dist`, `node_modules`, and `temp` directories.
+### Extensions
 
----
+The `extensions` argument defines which file extensions should be documented. It gets converted to an array if it’s not already one.
 
-**Note**: The documentation behavior can be easily adjusted by supplying different CLI arguments when invoking this script. Ensure that all paths and CLI arguments are properly formatted and that `node` is installed on your system to execute this script.
+### Initial Files
+
+The `initialFiles` argument specifies the initial set of files to include for documentation. It's also converted to an array if necessary.
+
+### Excluded Directories
+
+The `excluded` argument defines directories to exclude from the documentation process, such as `dist` and `node_modules`.
+
+## Invocation
+
+After processing the command-line arguments, the script calls the `generateDocumentation` function with the processed arguments. When no arguments are provided, defaults are used.
+
+```shell
+node gptdocument.js
+```
+
+### Example Invocation with Arguments
+
+```shell
+node gptdocument.js --entryPoint ./src --initialFiles index.js,app.js --extensions .js,.jsx --excluded dist,node_modules
+```
+
+This would initiate documentation generation starting from the `./src` directory, document the `index.js` and `app.js` files first, include files with `.js` and `.jsx` extensions, and exclude any files within the `dist` and `node_modules` directories.
+
+**Note**: If you need to pass an argument that includes a comma-separated list, make sure to not include spaces after the commas for this script to parse them correctly.
+
+## Additional Notes
+
+This CLI script is meant for ease of use so that a developer can quickly and efficiently generate markdown documentation for a given set of source code by simply providing command-line arguments tailored to their specific project's organizational structure and file types.

@@ -1,11 +1,11 @@
 {
-  "name": "gptdocgen",
-  "version": "0.1.5",
+  "name": "gptdocwriter",
+  "version": "0.2.3",
   "description": "GPT 4 Turbo-powered API documentation generator",
   "main": "./utils.js",
   "type": "module",
   "bin": {
-    "gptdocgen": "./gptdocument.js"
+    "gptdocwriter": "./gptdocument.js"
   },
   "scripts": {
     "start": "npm start",
@@ -22,9 +22,6 @@
   ],
   "author": "",
   "license": "",
-  "dependencies": {
-    "chatgpt": "~5.2.5"
-  },
   "nodemonConfig": {
     "env": {
       "NODEMON": true
@@ -33,5 +30,8 @@
       "dist/",
       ".temp/"
     ]
+  },
+  "dependencies": {
+    "openai": "^4.17.4"
   }
 }

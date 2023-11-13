@@ -1,80 +1,128 @@
-# utils.js Overview
+# `utils.js` Module Documentation
 
-The `utils.js` file contains utility functions for setting and retrieving an API key, parsing command line arguments, initializing the ChatGPTAPI, creating a README, and generating documentation for source code files in a project. This file serves as a core part of a larger system designed to document source code by using the OpenAI's ChatGPT model.
+The `utils.js` file is a core part of the GPT documentation system. It contains functions and utilities for interacting with the command line, managing configuration, and interfacing with the OpenAI API to generate documentation.
 
-## High-Level Summary
+## Table of Contents
 
-- **API Key Management**: Functions to set and get an API key for authentication.
-- **CLI Argument Parsing**: Functionality to parse Command Line Interface (CLI) arguments.
-- **ChatGPTAPI Initialization**: Code to initialize the ChatGPTAPI with system-specific messages and parameters.
-- **Documentation Generation**: Processes for generating markdown documentation and README files for provided source code.
+- [Installation](#installation)
+- [Utilities Overview](#utilities-overview)
+- [Command Line Arguments](#command-line-arguments)
+- [Configuration Management](#configuration-management)
+- [OpenAI Interaction](#openai-interaction)
+- [Document Generation](#document-generation)
 
-## Detailed Documentation
+## Installation
 
-### Functions
+Before using this module, ensure that you have Node.js installed. You will also need access to the OpenAI API, which requires an API key. Once you have the prerequisites, you can import this module into your Node.js application as shown below:
 
-#### `setApiKey(apiKey)`
-Saves the provided API key to a file.
-- **Inputs**:
-  - `apiKey`: A string representing the API key to be saved. It will be recognized via commandline i.e. `--apiKey sk-abcdefg`
-- **Outputs**: 
-  - None. It writes the API key to a file directly.
+```javascript
+import { getArgs, setConfig, getConfig, ask, generateReadme, generateDocumentation } from './utils.js';
+```
 
-#### `getApiKey()`
-Retrieves the API key from a file or falls back to a hardcoded value if the file doesn't exist.
-- **Inputs**:
-  - None.
-- **Outputs**: 
-  - Returns the API key as a string.
+## Utilities Overview
 
-#### `get(args=process.argv)`
-Parses CLI arguments into a more usable format.
-- **Inputs**:
-  - `args`: An array of strings representing the command-line arguments. Default is `process.argv`.
-- **Outputs**: 
-  - An object mapping argument keys to their respective values.
+This module exports the following utilities:
 
-#### `ask(text, onProgress, parentMessageId)`
-Sends a message to the ChatGPTAPI and optionally handles progress updates.
-- **Inputs**:
-  - `text`: The text to send to the ChatGPT API.
-  - `onProgress` (optional): A function to call with partial responses.
-  - `parentMessageId` (optional): The ID of the parent message for context.
-- **Outputs**: 
-  - Returns a promise that resolves to the full response from the ChatGPT API.
+- `getArgs`: Parses command-line arguments.
+- `args`: Contains the parsed command line arguments.
+- `setConfig`: Saves the API key and Assistant ID to a configuration file.
+- `getConfig`: Retrieves the API key and Assistant ID from the configuration file.
+- `ask`: Interacts with the OpenAI model using a prompt.
+- `generateReadme`: Generates a `README.md` file based on a prompt.
+- `generateDocumentation`: Generates documentation for JavaScript source code files.
 
-#### `generateReadme(entryPoint, onProgress, parentMessageId)`
-Generates a README.md file at the specified entry point directory.
-- **Inputs**:
-  - `entryPoint`: Path where the README.md will be generated.
-  - `onProgress` (optional): Function to handle progress updates.
-  - `parentMessageId` (optional): ID of the parent message for context.
-- **Outputs**: 
-  - None. Writes the README.md content to disk.
+## Command Line Arguments
 
-#### `generateDocumentation(entryPoint, initialFiles, fileExtensions, excluded, onProgress)`
-Main function to generate documentation for all source code files in a given directory.
-- **Inputs**:
-  - `entryPoint`: The root directory path to start documenting from.
-  - `initialFiles` (optional): An array of initial file paths to document first.
-  - `fileExtensions` (optional): An array of file extensions to include in documentation generation.
-  - `excluded` (optional): An array of directories to exclude from documentation.
-  - `onProgress` (optional): A function to handle progress updates.
-- **Outputs**: 
-  - None. Generates markdown documentation and organizes it within the 'documentation' directory.
+### `getArgs`
 
-### Constants and Initializations
+The `getArgs` function accepts an array of command line arguments and returns an object mapping the arguments to values. Arguments can be in the form `"--key value"` or `"key=value"`.
 
-- `systemMessage`: A predefined message explaining the task for developers using the tool.
-- `API_KEY_FILE`: The path where the API key is stored.
-- `args`: Parsed CLI arguments stored as an object.
-- `api`: An instance of `ChatGPTAPI` initialized with necessary parameters.
-- `lastLength`: Variable used to track the length of the last partial response from the ChatGPT API.
+```javascript
+export const args = getArgs(process.argv);
+```
 
-### Miscellaneous
+## Configuration Management
 
-- The file includes some commented example usage at the end for how to call `generateDocumentation()`.
+### `setConfig`
 
----
+Saves API key, Assistant ID, and a thread ID to a `config.txt` file. If the file already exists, it will update the existing configuration.
 
-**Note**: Before running this script, ensure that you have the correct permissions to write to the file system and that your environment variables are set up as expected, particularly `OPENAI_API_KEY` if not using a hardcoded API key. Use caution when managing API keys; they should not be hardcoded into version control systems.
+```javascript
+setConfig(apiKey, assistantId, threadId);
+```
+
+### `getConfig`
+
+Retrieves the API key, Assistant ID, and thread ID from the `config.txt` file. If the file does not exist, it will return an empty object.
+
+```javascript
+const { API_KEY, ASSISTANT_ID, THREAD_ID } = getConfig();
+```
+
+## OpenAI Interaction
+
+### `ask`
+
+Interacts with an OpenAI model using a prompt and optional instructions. It supports continuous message threads with the model and can be configured to either retain or delete these threads after interaction.
+
+```javascript
+const response = await ask({
+  model: 'gpt-4', // Model name
+  prompt: 'Hello, how are you today?', // User prompt
+  instructions: 'Write only in verse', // System message
+  threadId: 'example-thread-id',
+  deleteThread: true,
+  deleteAssistant: false
+});
+```
+
+## Document Generation
+
+### `generateReadme`
+
+Generates a `README.md` file given an entry point directory and a thread ID. It includes the directory of previously written markdown files and a summary of installation and usage.
+
+```javascript
+await generateReadme(entryPoint, threadId);
+```
+
+### `generateDocumentation`
+
+Generates documentation for an array of initial files, with specified file extensions and excluding certain directories.
+
+```javascript
+await generateDocumentation(entryPoint, initialFiles, fileExtensions, excluded);
+```
+
+## Example Usage
+
+Below is commented out code that provides an example of how to use these utilities:
+
+```javascript
+// (Uncomment this code for actual use)
+// async function main() {
+//   const response = await ask({
+//       model: 'gpt-4', // Model name
+//       prompt: 'Hello, how are you today?', // User prompt
+//       instructions: 'Write only in verse' // System message
+//   });
+//
+//   console.log('Response:', response);
+// }
+//
+// main();
+```
+
+## Additional Notes
+
+- The `ask` function uses a mechanism for streaming data with an optional callback for progress updating.
+- The interaction with OpenAI's GPT models is rate-limited based on the model chosen.
+- The `generateDocumentation` function can be invoked to document an entire project directory recursively.
+
+**Remember to set your API key before using any function that interacts with the OpenAI API**.
+
+```javascript
+let apiKey = "your-api-key-here"; // Set your OpenAI API Key
+``` 
+
+With this in place, you'll be able to generate comprehensive markdown documentation for your codebase, leveraging the impressive language capabilities of OpenAI's models.
