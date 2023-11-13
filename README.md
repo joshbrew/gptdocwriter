@@ -35,7 +35,7 @@ generateDocumentation(
 
 The prompt for all of this is experimental so tweak it as you need.
 
-I've pumped as much as 110kb of code from a single file into GPT 4 turbo.
+See a repo where I applied this to a fairly hefty codebase: [JS Maze Generator with A* solver](https://github.com/joshbrew/JS-Maze-Generator-with-A-Star-Solver/tree/main/documentation)
 
 (GPT generated docs after this)
 # GPT Doc Generator: A README
