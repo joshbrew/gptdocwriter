@@ -1,62 +1,72 @@
-# `gptdocument.js` Script Documentation
+# GPT4-Documenter CLI Utility Documentation
 
-The `gptdocument.js` file is a command-line interface (CLI) script for the GPT documentation system. It primarily utilizes the `generateDocumentation` function provided by the `utils.js` utility module to initiate the documentation process for source code files.
+## Overview
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Arguments Processing](#arguments-processing)
-- [Invocation](#invocation)
-
-## Installation
-
-Before using this script, please ensure you have installed Node.js as well as the dependencies (e.g., OpenAI SDK) required by the `utils.js` module. This script should be included within the same project that contains the `utils.js` module.
+`gptdocument.js` is a command-line utility script for generating project documentation. The script interfaces with a set of utilities from `utils.js` to automate the process of documentation generation. Importantly, this script allows configuration of several aspects such as entry points, file types to include, and exclusions.
 
 ## Usage
 
-This script can be executed directly from the command line with appropriate arguments. No manual invocation from within a file is necessary since the script includes the shellbang (`#!/usr/bin/env node`) at the top, which tells the environment to execute this file with Node.js.
+To use this script, ensure it has execution permissions and is invoked from the command line:
 
-## Arguments Processing
-
-### API Key
-
-If the `apiKey` argument is provided, it logs that the API key is being set, which includes saving to the installed library location:
-
-```shell
-node gptdocument.js --apiKey YOUR_API_KEY
+```bash
+chmod +x gptdocument.js    # Make the script executable
+./gptdocument.js           # Run the script
 ```
 
-### Extensions
+## Configuration
 
-The `extensions` argument defines which file extensions should be documented. It gets converted to an array if it’s not already one.
+The utility parses command-line arguments `args` that allow it to be configured as follows:
 
-### Initial Files
+- `apiKey`: Setting the API key for the library if required
+- `entryPoint`: The path of the directory where the documentation generation should commence
+- `initialFiles`: An array of initial file paths to consider for documentation
+- `extensions`: An array of file extensions to include in the documentation process
+- `excluded`: An array of directory names or file paths to exclude from the documentation process
 
-The `initialFiles` argument specifies the initial set of files to include for documentation. It's also converted to an array if necessary.
+## Command-Line Arguments
 
-### Excluded Directories
+The script can take various arguments to customize its execution:
 
-The `excluded` argument defines directories to exclude from the documentation process, such as `dist` and `node_modules`.
-
-## Invocation
-
-After processing the command-line arguments, the script calls the `generateDocumentation` function with the processed arguments. When no arguments are provided, defaults are used.
-
-```shell
-node gptdocument.js
+```bash
+./gptdocument.js --apiKey YOUR_API_KEY                       # Set the API key
+./gptdocument.js --entryPoint ./src                         # Set the entry point to `./src`
+./gptdocument.js --initialFiles file1.js,file2.js           # Set initial files
+./gptdocument.js --extensions .js,.ts                       # Set file extensions to include
+./gptdocument.js --excluded node_modules,dist               # Set directories or files to exclude
 ```
 
-### Example Invocation with Arguments
+## Functionality
 
-```shell
-node gptdocument.js --entryPoint ./src --initialFiles index.js,app.js --extensions .js,.jsx --excluded dist,node_modules
+### Setting an API Key
+
+If the `apiKey` option is provided, it notifies the user that the API key is being set and saved to the library's install location. This may imply additional functionality elsewhere in the library that persists this API key.
+
+### Documentation Generation
+
+If not setting an API key, then `gptdocument.js` primarily focuses on invoking the `generateDocumentation` function with the appropriate arguments:
+
+- Converts string arguments for `initialFiles`, `extensions`, and `excluded` into arrays if they are not already.
+- Sets default values for arguments if they are not provided through the command line:
+    - Default `entryPoint` is the current working directory.
+    - Default `extensions` include JavaScript `.js`, TypeScript `.ts`, `.mjs`, `.jsx`, and `.tsx` files.
+    - Default `excluded` directories are `dist` and `node_modules`.
+
+## Dependencies
+
+This script depends on `utils.js` which should export the `generateDocumentation` function and the `args` argument parser.
+
+```javascript
+import {generateDocumentation, args} from './utils.js';
 ```
 
-This would initiate documentation generation starting from the `./src` directory, document the `index.js` and `app.js` files first, include files with `.js` and `.jsx` extensions, and exclude any files within the `dist` and `node_modules` directories.
+## Potential Improvements
 
-**Note**: If you need to pass an argument that includes a comma-separated list, make sure to not include spaces after the commas for this script to parse them correctly.
+- Better error handling and feedback for the user on incorrect or incomplete command usage.
+- Enhanced documentation for `generateDocumentation` function and the structure of arguments it accepts.
+- Additional details to describe the process of setting the API key and how it's utilized by the library.
 
-## Additional Notes
+## Notes
 
-This CLI script is meant for ease of use so that a developer can quickly and efficiently generate markdown documentation for a given set of source code by simply providing command-line arguments tailored to their specific project's organizational structure and file types.
+The script is expected to act as a simple, adaptable CLI wrapper around a more complex documentation generation logic defined in `utils.js`. As the script checks for `args.apiKey` before processing documentation-related arguments, it is important to ensure correct argument parsing and conditional logic flow to align with intended behavior.
+
+Before deployment or serious usage, users should ensure that the full documentation generation process matches their project requirements and that all necessary configurations are provided.
