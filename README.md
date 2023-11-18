@@ -41,10 +41,10 @@ gptdocwriter --model gpt-4-turbo-1106
 gptdocwriter --cleanup
 
 # Tailor the prompt for the AI instead of the default prompt
-gptdocwriter --instructions "Write detailed documentation about each file"
+gptdocwriter --instructions Write detailed documentation about each file
 
 # Include additional specific instructions
-gptdocwriter --extraInstructions "Mention the CLI input arguments"
+gptdocwriter --extraInstructions Mention the CLI input arguments
 
 # Specify the project name within the readme
 gptdocwriter --name gptdocwriter
@@ -53,7 +53,7 @@ gptdocwriter --name gptdocwriter
 gptdocwriter --outputFormat .py
 
 # Adjust the readme content template
-gptdocwriter --readme "Summarize this in a digestible format for folks who got a D in English"
+gptdocwriter --readme Summarize this in a digestible format for folks who got a D in English
 ```
 
 Set API Key (saved to the library folder (keep private!!) in config.txt)
