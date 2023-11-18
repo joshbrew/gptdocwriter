@@ -19,7 +19,7 @@ entryPoint defaults to current working directory
 
 ## Usage
 
-The various command line arguments include:
+The various command line arguments include. Combine as needed. Call --apiKey first.
 
 ```bash
 # Set the API key for OpenAI services
@@ -122,8 +122,8 @@ Voila! Documentation emerges, like sunlight through the dawn.
 
 ## Documentation Directory :file_folder:
 
-- [`package.json`](/documentation/package.md)
-- [`gptdocument.js`](/documentation/gptdocument.md)
+- [`package.json`].(/documentation/package.md)
+- [`gptdocument.js`](./documentation/gptdocument.md)
 
 ---
 
