@@ -49,7 +49,7 @@ gptdocwriter --extraInstructions Mention the CLI input arguments
 # Specify the project name within the readme
 gptdocwriter --name gptdocwriter
 
-# Change the output format to another language, e.g. we could transpose files from one programming language to another 
+# Change the output format to another extension than .md, e.g. we could transpose files from one programming language to another 
 gptdocwriter --outputFormat .py
 
 # Adjust the readme content template
