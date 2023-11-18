@@ -122,8 +122,8 @@ Voila! Documentation emerges, like sunlight through the dawn.
 
 ## Documentation Directory :file_folder:
 
-- [`package.json`].(/documentation/package.md)
-- [`gptdocument.js`](./documentation/gptdocument.md)
+- [`utils.js`](./documentation/utils.js.md)
+- [`gptdocument.js`](./documentation/gptdocument.js.md)
 
 ---
 
