@@ -6,7 +6,7 @@ import OpenAI from 'openai';
 
 let apiKey = ""; //use this if not using CLI
 
-let instructions = `You are receiving source code from applications or libraries, starting with the most critical files in order to recursively document source code for comprehensive developer documentation. 
+let instr = `You are receiving source code from applications or libraries, starting with the most critical files in order to recursively document source code for comprehensive developer documentation. 
 
 Your documentation should build upon each file's context as you are fed them in the conversation, forming cohesive, well-articulated, professional Markdown documents. Your responses will be parsed as if they were the body of markdown files for each file you are given. 
 
@@ -56,28 +56,56 @@ export const getArgs = (args = process.argv) => {
 // Parse CLI arguments
 export const args = getArgs();
 
-if(args.extraInstructions) {
-  instructions += args.extraInstructions;
-  console.log("Modified instructions with:", args.extraInstructions);
-} else instructions += `Occasionally write random bits of sardonic/self-deprecating humor.`; //dummy extra instructions
+if(args.instructions) {
+  instr = args.instructions;
+  args.cleanup = true; //need to replace if modifying instructions
+}
 
+if(args.extraInstructions) {
+  instr += args.extraInstructions;
+  console.log("Modified instructions with:", args.extraInstructions);
+  args.cleanup = true; //need to replace if modifying instructions
+} else instr += `Occasionally write random bits of sardonic/self-deprecating humor.`; //dummy extra instructions
 
 //possible command w/ example input for this repo:
 /**
- * Set this first:
- * --apiKey sk-abcdefg
- * 
- * Then run gptdocwriter or node gptdocument.js with any of these settings:
- * --initialFiles utils.js,gptdocument.js
- * --excluded server.js,node_modules,dist
- * --extensions js,ts,tsx,jsx
- * --model gpt-4-turbo-1106
- * --cleanup
- * --extraInstructions Make sure you specifically list the input arguments for the cli
- * --name gptdocwriter
- */
+Set this first:
+gptdocwriter --apiKey sk-abcdefg
+  
+Combine the following arguments as you wish.
+Then run gptdocwriter or node gptdocument.js with any of these settings:
+# Generate documentation for specific initial files, then crawl the rest of the specified extensions (defaults to js)
+gptdocwriter --initialFiles utils.js,gptdocument.js
+
+# Exclude specific files or directories from documentation
+gptdocwriter --excluded server.js,node_modules,dist
+
+# Specify file extensions to consider for documentation
+gptdocwriter --extensions js,ts,tsx,jsx
+
+# Define the model to be used - make it turbo!
+gptdocwriter --model gpt-4-turbo-1106
+
+# Clean up the assistant and thread after generating documentation. Threads are cleaned on each new run anyway.
+gptdocwriter --cleanup
+
+# Rewrite the default prompt, this repo fundamentally just reads a file then writes in a developing context, ending with a readme.  
+gptdocwriter --instructions For each file, write a sonnet about it
+
+# Some extra instructions for the AI, because it's a good listener
+gptdocwriter --extraInstructions Make sure you specifically list the input arguments for the cli
+
+# Tells the readme what the project name is
+gptdocwriter --name gptdocwriter
+
+# Instead of writing md files, let's transpose to python with a custom prompt!
+gptdocwriter --outputFormat .py  
+
+# We can replace the readme prompt with whatever as well, as it just uses a fill-in-the-blanks template.
+gptdocwriter --readme Summarize what you read into a 3 paragraph report on donkey genetics.
 
 
+*/
 
 //define --model gpt-4 etc. Note: not free
 const model = args.model ? args.model : 'gpt-4-1106-preview';//'gpt-4';//8k //'gpt-3.5-turbo-1106' //16k //'gpt-4-1106-preview'; //128k
@@ -159,21 +187,6 @@ console.log("Running GPT Doc generator with model", model);
 
 let rateLimitSec = 0;
 
-let maxModelTokens = 4096;
-let maxResponseTokens = 4096;
-
-if(model === 'gpt-4-1106-preview') { //hack
-  maxModelTokens = 128e3; //128e3
-  maxResponseTokens = 4e3;
-  //rateLimitSec = 12;
-} else if (model === 'gpt-4') {
-  maxModelTokens = 8e3;
-  maxResponseTokens = 4e3;
-} else if (model === 'gpt-3.5-turbo-1106') {
-  maxModelTokens = 16e3;
-  maxResponseTokens = 16e3;
-}
-
 const openai = new OpenAI({
   apiKey, // defaults to process.env["OPENAI_API_KEY"]
 });
@@ -193,9 +206,7 @@ async function cleanup() {
     //Create an assistant and thread to interact with GPT models
 
     if(assistantId) {
-
-      console.log("clearing previous assistant");
-
+      console.log("Clearing previous assistant");
       await openai.beta.assistants.del(assistantId);
       assistantId = undefined;
       setConfig(undefined,false);
@@ -211,7 +222,7 @@ async function cleanup() {
 export async function ask({
   model = 'gpt-3.5-turbo-16k', // Default model
   prompt,
-  instructions,
+  instructions=instr,
   threadId,
   deleteThread=true, //default true
   deleteAssistant=false //delete assistant?
@@ -353,13 +364,13 @@ export async function ask({
 // main();
 
 
-export async function generateReadme(entryPoint, threadId, instructions) {
+export async function generateReadme(entryPoint, threadId, instructions=instr, outputFormat=args?.outputFormat ? args.outputFormat : '.md',) {
   try {
       console.log("Generating README.md")
       // Create a system message for generating README content
-      const readmeContent = (await ask(
+      let readmeContent = (await ask(
         {
-          prompt:`Place README.md contents here for this repository${args.name ? `, named: ${args.name}` : ``}. This will go on github for sharing so make it snazzy with some visual flare and emojis. Include directory of previously written markdown files. Also include a quick summary of installation and usage at the top. List possible use cases near the bottom along with other typical readme stuff.`,
+          prompt:args.readme ? args.readme : `Place README.md contents here for this repository${args.name ? `, named: ${args.name}` : ``}. This will go on github for sharing so make it snazzy with some visual flare and emojis. Include directory of previously written markdown files. Also include a quick summary of installation and usage at the top. List possible use cases near the bottom along with other typical readme stuff. Otherwise follow your instructions.`,
           model,
           instructions,         
           threadId,
@@ -369,7 +380,7 @@ export async function generateReadme(entryPoint, threadId, instructions) {
       )).text;
 
       // Define path for README.md
-      const readmePath = path.join(entryPoint, 'documentation', 'README.md');
+      let readmePath = path.join(entryPoint, 'documentation', 'README'+(outputFormat));
 
       if(readmeContent.startsWith('```')) { //parse off any excess markdown brackets
         if(readmeContent.startsWith('```markdown')) {
@@ -391,7 +402,9 @@ export async function generateDocumentation(
     initialFiles = [], 
     fileExtensions = ['.js', '.ts', '.mjs', '.jsx', '.tsx'], 
     excluded = ['dist','node_modules'],
-    extraInstructions = ""
+    instructions=instr,
+    extraInstructions = "",
+    outputFormat=args?.outputFormat ? args.outputFormat : '.md',
 ) {
     const initialFullPaths = initialFiles.map(file => path.join(entryPoint, file));
 
@@ -485,7 +498,7 @@ export async function generateDocumentation(
     function writeDocumentation(originalFilePath, documentation) {
       try {
         const relativePath = path.relative(entryPoint, originalFilePath);
-        const docFilePath = path.join(entryPoint, 'documentation', `${relativePath}.md`);
+        const docFilePath = path.join(entryPoint, 'documentation', `${relativePath}${outputFormat}`);
 
         const docDir = path.dirname(docFilePath);
         if (!fs.existsSync(docDir)) {
@@ -496,7 +509,7 @@ export async function generateDocumentation(
 
         let getRandomIdx = (arr=[]) => {
           let arrIdx = Math.floor(Math.random() * arr.length);
-          return arr[arrIdx]
+          return arr[arrIdx];
         }
         let randomQuote = getRandomIdx([
           "Gold needed.",
@@ -505,7 +518,6 @@ export async function generateDocumentation(
           "This building has no labor, sire.",
           "We are losing a bit of money, my liege.",
           "You can count on us! What're we doing?"
-
         ]);
         console.log(`Documented to:  ${docFilePath},`, randomQuote);
       } catch (error) {
@@ -523,7 +535,7 @@ export async function generateDocumentation(
     await readFiles(entryPoint);
     if(rateLimitSec > 0) await new Promise((res)=>{console.log("Rate limit wait:", rateLimitSec); setTimeout(()=>{res(true);}, rateLimitSec*1000)});     
     // After documenting all files, generate README.md
-    await generateReadme(entryPoint, threadId);
+    await generateReadme(entryPoint, threadId, instructions, outputFormat);
     console.log( "...Work halted, mi'lord.");
 }
 

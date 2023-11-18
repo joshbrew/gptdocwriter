@@ -10,19 +10,51 @@ Then, from your desired folder:
 
 entryPoint defaults to current working directory
 
+## Features
+
+- Set an API key for authenticating with the OpenAI API.
+- Generate documentation based on specified entry points, file types, and other criteria.
+- Exclude certain files or directories from being documented.
+- Define custom models, output formats, and additional instructions for the AI to follow.
+
+## Usage
+
 The various command line arguments include:
 
-- `--apiKey`: Your OpenAI API key (e.g. `sk-abcdefg`). Treat this like your diary—personal and private.
-- `--initialFiles`: Comma-separated list of startup files (e.g. `utils.js,gptdocument.js`).
-- `--excluded`: Comma-separated list of paths to be excluded from documentation (e.g. `server.js,node_modules,dist`).
-- `--extensions`: Comma-separated list of file extensions to include in the documentation (e.g. `js,ts,tsx,jsx`).
-- `--model`: The model of GPT to use (e.g. `gpt-4-turbo-1106`).
-- `--cleanup`: Boolean flag to clean up anything afterward. Probably leftover "documentation" pizza boxes.
-- `--extraInstructions`: Additional instructions for usage clarification (e.g. "Make sure you specifically list the input arguments for the cli").
-- `--name`: Name of the project to document (e.g. `gptdocwriter`).
+```bash
+# Set the API key for OpenAI services
+gptdocwriter --apiKey <your_key_here>
 
+# Generate documentation for specific files and crawl others
+gptdocwriter --initialFiles utils.js,gptdocument.js
 
-inputs listed are defaults.
+# Exclude files or directories from being documented
+gptdocwriter --excluded server.js,node_modules,dist
+
+# Specify which file extensions to include in the documentation
+gptdocwriter --extensions js,ts,tsx,jsx
+
+# Choose the GPT-4 model variant to use
+gptdocwriter --model gpt-4-turbo-1106
+
+# Tidy up after generating documentation
+gptdocwriter --cleanup
+
+# Tailor the prompt for the AI instead of the default prompt
+gptdocwriter --instructions "Write detailed documentation about each file"
+
+# Include additional specific instructions
+gptdocwriter --extraInstructions "Mention the CLI input arguments"
+
+# Specify the project name within the readme
+gptdocwriter --name gptdocwriter
+
+# Change the output format to another language, e.g. we could transpose files from one programming language to another 
+gptdocwriter --outputFormat .py
+
+# Adjust the readme content template
+gptdocwriter --readme "Summarize this in a digestible format for folks who got a D in English"
+```
 
 Set API Key (saved to the library folder (keep private!!) in config.txt)
 
@@ -53,75 +85,81 @@ GPT generated docs below, with extra instructions to use strict iambic pentamete
 
 - Generated with: `node gptdocument.js --excluded server.js,node_modules,dist --initialFiles utils.js,package.json --cleanup --extraInstructions Write everything in iambic pentameter without exception.`
 
-# GPT Doc Writer 📄✨
+# GPTDocWriter :bookmark_tabs: :sparkles:
 
-Elevate your code with prose well-brewed,
-For documentation's never skewed.
-With AI's touch, the task pursued,
-GPT 4 ensures it's aptly viewed.
-
-## Quick Start 🚀
-
-### Installation
-
-```bash
-npm install gptdocwriter
-```
-
-### Usage
-
-To generate your API documentation:
-
-```bash
-./gptdocument.js --apiKey YOUR_API_KEY
-```
-
-Use different options to tweak the generation:
-
-```bash
-./gptdocument.js --entryPoint ./src --initialFiles index.js --extensions .js,.ts --excluded dist,node_modules
-```
-
-## Directory 📁
-
-- [`gptdocument.js`](.\gptdocument.js) - The core script to generate docs.
-
-## Features and Use Cases 🔍
-
-- **API Documentation**: For your library or application, generate human-like documentation.
-
-- **Developer Onboarding**: Ease new developers into your project with comprehensive docs.
-
-- **Code Review**: Enhance code understanding with descriptive docs for reviewers.
-
-- **Continuous Documentation**: Integrate with your CI/CD pipeline for updated docs each push.
-
-## Why GPT Doc Writer? 🤔
-
-With the might of GPT 4 employed,
-The chore of docs is thus destroyed.
-Your codebase grand and unalloyed,
-By clear docs that shall fill the void.
-
-Adorned with knowledge fresh and keen,
-Your source reflects what's oft unseen.
-Each function, class, and routine clean,
-Documented, like a well-oiled machine.
-
-## Contributing
-
-Join our quest, oh knights of code! 🛠️
-For contributions do indeed bode
-A better tool, a brighter abode,
-Raise an issue, fork and upload.
-
-## License
-
-Distributed under the MIT License. See `LICENSE` file for more information.
+Embrace the muse of documentation, where prose is paired with code,
+A repository enriched with AI, a doc-gen tool abode.
+GPTDocWriter wields the pen of GPT-4's might,
+To craft the docs that shadow software, bringing its logic to light.
 
 ---
 
-Craft your docs with AI's guide,  
-Your path to clarity, far and wide.  
-For with GPT Doc Writer by your side,  
-In doc excellence, you shall abide. ✨
+## Quick Start :rocket:
+
+### Installation :wrench:
+
+```bash
+npm install -g gptdocwriter
+```
+
+Configure your API key to unlock the AI's insights:
+
+```bash
+gptdocwriter --apiKey your-openai-key
+```
+
+### Usage :computer:
+
+Generate documentation effortlessly with a simple command:
+
+```bash
+gptdocwriter --initialFiles yourEntryPoint.js
+```
+
+Voila! Documentation emerges, like sunlight through the dawn.
+
+---
+
+## Documentation Directory :file_folder:
+
+- [`package.json`](/documentation/package.md)
+- [`gptdocument.js`](/documentation/gptdocument.md)
+
+---
+
+## Features :star2:
+
+- **AI-Powered Documentation**: Utilize the latest GPT-4 model to generate in-depth documentation for your codebase.
+- **Customizable**: Tailor the documentation process with a myriad of command-line arguments.
+- **Extensible**: Supports various file extensions by default and allows for custom ones as needed.
+- **Clean-Up Mechanism**: Maintain a neat workspace by cleaning up threads post-documentation generation.
+
+## Use Cases :bulb:
+
+- **Large Codebases**: Navigating vast seas of code? Let the AI assistant chart the documentation course.
+- **API Documentation**: Have APIs that need documenting? This tool will create coherent and comprehensive guides.
+- **Education and Learning**: Study how documentation is crafted by examining AI-generated examples.
+- **Continuous Integration**: Integrate into your CI pipeline for up-to-date documentation at all times.
+
+## Contributing :handshake:
+
+Your insights and code are the winds that propel this project forward. If you're looking to contribute, simply:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License :page_with_curl:
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Acknowledgements :clap:
+
+- [OpenAI](https://openai.com/) for their AI models.
+- All the contributors who pour their time into open source.
+
+---
+
+Embrace the future of documentation with GPTDocWriter, where clarity and precision meet AI's fertile mind. 📜✨

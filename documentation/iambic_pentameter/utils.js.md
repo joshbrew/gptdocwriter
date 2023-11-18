@@ -1,104 +1,140 @@
-```markdown
+
 # Utils.js Documentation
 
-Oh gentle reader, pray attend and lend
-Thy mind to gain what knowledge here shall wend.
-Herein described, a module stands revealed,
-To automate and traverse code's vast field.
+## Overview
 
-### Overview
+This `utils.js` module is a treasure trove of utility functions,
+Aiding in command line parses, interactions bright and new,
+With OpenAI's potent services, for document generation flights,
+By gleaming code, we'll guide the way, to facile integration sites.
 
-In `utils.js`, a purpose served with vim,
-To parse commands and set configurations trim.
-With OpenAI's grand gears it doth entwine,
-And executes instructions so divine.
+## Functions
 
-## Installation and Usage
+### getArgs()
 
-Include this in thy noble script's array,
-And import thusly, without shades of gray:
+The `getArgs` function is a cliff from which one can dive,
+Into the process' arguments, with "--key value" drive,
+Or "key=value", mapped with finesse, expeditiously contrived,
+Craft a parameters' structure, with norms none contrive.
+
+#### Usage
 
 ```javascript
-import { getArgs, setConfig, getConfig, ask, generateDocumentation } from './utils.js';
+import { getArgs } from './utils.js';
+
+// Example: node script.js --foo=bar --baz "qux corge"
+const args = getArgs();
+
+// Output: { foo: "bar", baz: "qux corge" }
 ```
 
-The secrets held within thy `utils.js` heart,
-Await to play their fundamentally crucial part.
-The configurations, parsing command line knaves,
-They ready scripts for tasks that developers crave.
+### setConfig()
 
-## Configuration Management
+`setConfig` writes to disk in `config.txt`, preserve,
+API keys, assistant IDs, and thread data that you conserve.
+Should one not have digits raw, or IDs to catch and curve,
+'Twill write anew; falses flag delete, 'tis its nerve.
 
-### `setConfig(apiKey, assistantId, threadId)`
+#### Usage
 
-This function doth write unto a file
-The settings for thy API, sans guile.
-It checks if current settings do exist,
-And updates them or strikes them from the list.
+```javascript
+import { setConfig } from './utils.js';
 
-### `getConfig()`
-
-Retrieve the configs from the disk with ease,
-Return an object, or empty if it please.
-
-## Command Line Arguments
-
-### `getArgs(args = process.argv)`
-
-Used for interpreting the script's behest,
-From CLI it builds an argument nest.
-Employ it thus to find the keys and pacts,
-To tell thy code just how it should react.
-
-## GPT Interaction
-
-### `ask(options)`
-
-Prosper, dear user, and to GPT-4 speak,
-It takes a prompt, then waits for AI to squeak.
-Crucial effusions in communication's threads,
-Yield answers from the model's knowing heads.
-
-## Documentation Procedures
-
-### `generateReadme(entryPoint, threadId)`
-
-Inscribe a `README.md`, full robust,
-With content rich that earns the reader's trust.
-Ensconce at `entryPoint` as you'd design,
-To guide all souls who in your code do mine.
-
-### `generateDocumentation(entryPath, initialFiles, fileExtensions, excluded, extraInstructions)`
-
-A task most arduous, 'tis documented code,
-From starting files, through paths and branches strode.
-Neglect what's spurned, embrace the files in scope,
-And write each document with skill and hope.
-
-## Model Configuration
-
-Observe the `model` variable's scope,
-For 'tis the AI for which you dare to grope.
-From 'gpt-3.5-turbo' to the '4-preview',
-Choose well the intellect that complements you.
-
-## Utility in Action
-
-The functions here doth make a toolbelt grand,
-For scripting documentation across the land.
-Invoke these in thy splendid automation's tale,
-To spin a doc that's clear, without fail.
-
-With OpenAI's partnership, your deeds enshrine,
-The spark of knowledge in a framework, oh so fine.
-Prepare to have your codebase documented,
-Perchance improved, with wisdom augmented.
+setConfig(apiKey, assistantId, threadId);
 ```
 
-Apply these in thy scripts with great accord,
-And let the utils aid thee, like a sword.
-Dispatch thy commands and unwrap their might,
-To ease the scribbling in the dev's long night.
+### getConfig()
 
----
-**Note**: The bardic code above doth need environment up with `node.js` set, and `fs` plus `path` modules met. The OpenAI library, too, must be present; install with care, and use it prudent.
+From its vault, `getConfig` bestows keys and IDs,
+Reading from `config.txt` file, with no complex strides.
+Returns an object if found, else an empty diadem tries,
+To furnish requests, lest the file no longer bides.
+
+#### Usage
+
+```javascript
+import { getConfig } from './utils.js';
+
+const config = getConfig();
+```
+
+### ask()
+
+With `ask` you dispatch prompts to the OpenAI's hive,
+With models that fluently converse, where threads and assistants thrive.
+Provide it's prompt, watch as it writes, gently it'll contrive,
+Responses in verse, prose, or instructions for code, alive.
+
+#### Usage
+
+```javascript
+import { ask } from './utils.js';
+
+const response = await ask({
+  model: 'gpt-4-1106-preview',
+  prompt: 'Explain the purpose of "utils.js" in prose.',
+  instructions: 'Please maintain a professional tone.'
+});
+```
+
+### generateReadme()
+
+`generateReadme` conjures READMEs from the void that's bare,
+By directive it will carve a path; to directories and files, it's fair.
+A structured guide, for users' sake, with clarity bright as Sol's glare,
+Ensuring no wanderer be lost, this scribe's intent is to forswear.
+
+#### Usage
+
+```javascript
+import { generateReadme } from './utils.js';
+
+await generateReadme(entryPoint);
+```
+
+### generateDocumentation()
+
+To `generateDocumentation`, we present paths' list,
+It browses through files to find ones that may persist,
+And carves out docs to `.md` files, a navigator’s cyst,
+Forewarning `excluded` glooms, and filetypes wist.
+
+#### Usage
+
+```javascript
+import { generateDocumentation } from './utils.js';
+
+generateDocumentation(__dirname, ['utils.js'], ['.js']);
+```
+
+## Examples of CLI commands
+
+- Set up the API key:
+  ```bash
+  gptdocwriter --apiKey sk-abcdefg
+  ```
+  
+- Generate documentation, initializing with specific files:
+  ```bash
+  gptdocwriter --initialFiles utils.js,gptdocument.js
+  ```
+  
+- Exclude files or directories:
+  ```bash
+  gptdocwriter --excluded server.js,node_modules,dist
+  ```
+  
+- Define OpenAI model:
+  ```bash
+  gptdocwriter --model gpt-4-turbo-1106
+  ```
+  
+- Additional customization via CLI can set instructions, format, and more.
+
+Remember to provide the API key if not using environment variables or the configuration file. To interact with OpenAI models, ensure permissions and credentials are properly configured.
+
+Upon including `utils.js` in your projects, invoke these utilities,
+To parse, ask, and document, bridging the sought after novelties,
+And heed the guidance offered here, with intention and sureties,
+For 'tis the foundation of doc generation, bearing these versed qualities.
+`

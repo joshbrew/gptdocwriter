@@ -1,85 +1,89 @@
-# Documentation for `gptdocument.js`
+# `gptdocument.js` Documentation for GPTDocWriter
 
-In realms of code where doc-scripts run,  
-`gptdocument.js` basks in the sun.  
-A CLI tool for when you've begun,  
-To document code work, neatly spun.
+In code's firmament, a script does wake,
+`gptdocument.js`, for document's sake.
+Harnessing arguments, paths and skills,
+To render prose where technicality fills.
 
 ## Overview
 
-Take heed, for this serves as the guide,  
-To wield this script, with `node` beside,  
-For writing docs, it does provide,  
-A means to make documentation wide.
+This script, dressed in Node's command line cloak,
+Serves as the heart where our documentation spoke.
+With `utils.js` and its exports in play,
+It processes files in an automated way.
 
-## Usage
+## Utilization
 
-This JavaScript invoked at command line's door,  
-Requires Node.js to perform its chore.  
-With `#!/usr/bin/env node` on store,  
-As shebang, in this script's core lore.
+### Set API Key
 
-Run this script from your terminal's vault,  
-As such: `./gptdocument.js` to exalt.  
-It'll parse your source to a doc's assault,  
-With GPT's insight, a result without fault.
+Should an API key be what you wish,
+The script will store it like a treasured dish.
+Trust in these lines wherein credentials set,
+For future use, without a hint of fret.
 
-## Functionality
+```bash
+gptdocwriter --apiKey your-secret-key
+```
 
-This script, it leans on `utils.js` much,  
-From whence it imports with a gentle touch.  
-The `generateDocumentation` crutch,  
-Is called with args, which it shall clutch.
+### Generate Documentation
 
-### The CLI Arguments
+When API key's set, unto the main show,
+Where files and directories come and go.
+Convert arguments, lest they be astray,
+To arrays that guide the documenter's way.
 
-If `args.apiKey` found, it does confide,  
-"This library’s install saves the API stride."  
-Else, to command line docs, you’re tied,  
-And other params shall be applied.
+Recording the structs from whence code springs,
+Extensions, paths, and such essential things.
+Array conversions, subtle, rightly, done,
+Prepare the field for the generator to run.
 
-Comma-separated strings to arrays, a quest,  
-For `extensions`, `initialFiles`, alas also `excluded` are dressed.  
-Ensuring they're arrays at your behest,  
-So `generateDocumentation` processes its best.
+```bash
+gptdocwriter --initialFiles utils.js,gptdocument.js
+gptdocwriter --excluded server.js,node_modules,dist
+gptdocwriter --extensions js,ts,tsx,jsx
+gptdocwriter --instructions For each file, write a sonnet about it
+```
 
-Then, run the `generateDocumentation` charm,  
-With these parameters causing no harm:
-- `entryPoint`: Your project's arm,  
-  Defaults to working directory's farm.
+### Customization Options
 
-- `initialFiles`: Begin at these files' gates,  
-  Or `undefined` should nothing else awaits.
+Diverse flags presented for the scribe's craft,
+Their varied motions, forward and abaft:
 
-- `extensions`: File extensions to narrate,  
-  Defaulting to JavaScript and TypeScript’s state.
+- `--model` - set the AI's sage wit,
+To "gpt-4-turbo", its knowledge to commit.
 
-- `excluded`: To omit directories' fate,  
-  Like 'dist' or 'node_modules', set straight.
+- `--cleanup` - maintain tidiness, post-run,
+Cleaning threads, that no confusion be done.
 
-## Commands and Options
+- `--extraInstructions` - to AI, a whisper,
+Detailed guidance, like a secret scripture.
 
-Invoke this script and let options soar,  
-Each argument shapes the task's core.  
-Thus, command the tool to explore,  
-Your code, and docs shall flood the fore.
+- `--name` - the projected title, declared and bright,
+Informs the README, casting its light.
 
-1. To set an API key with lore,  
-   Just pass `--apiKey=YOUR_API_KEY` before.
+- `--outputFormat` - switch the prose attire,
+From markdown's delight to python's fire.
 
-2. Define an `entryPoint` to adore,  
-   By `--entryPoint=./src` to ensure.
+- `--readme` - the preamble's pattern can shift,
+To a report on genetics, if you catch my drift.
 
-3. List `initialFiles` you implore,  
-   With `--initialFiles=file1.js,file2.js` score.
+## Command Example
 
-4. Specify `extensions` as you pore,  
-   `--extensions=.js,.ts` to not ignore.
+The ways to invoke this script are myriad,
+Mixed as you wish, their outcomes period:
 
-5. And `excluded` paths o’er,  
-   By `--excluded=dist,node_modules` to store.
+```bash
+# Set API key first
+gptdocwriter --apiKey sk-abcdefg
 
-The script runs nigh, the code it'll assay,  
-May your docs grow rich with AI's essay.   
-Achronic knowledge holds no sway,  
-For your code tales, this tool will display.
+# Combine arguments for desired action
+gptdocwriter --initialFiles utils.js,gptdocument.js --excluded server.js,node_modules --extensions js,ts,tsx,jsx --model gpt-4-turbo-1106 --cleanup --instructions Write a sonnet about it --extraInstructions List the input arguments for the cli --name gptdocwriter --outputFormat .py --readme Summarize into a report on donkey genetics.
+```
+
+This script then runs, with drumming heart,
+Creating docs from code, a modern art.
+
+Invoke these truths, with terminal's might,
+To conjure docs from daybreak to night.
+Swiftly through Node's realm, let the script stretch,
+And in its wake, wisdom it'll etch.
