@@ -23,7 +23,7 @@ The various command line arguments include. Combine as needed. Call --apiKey fir
 
 ```bash
 # Set the API key for OpenAI services
-gptdocwriter --apiKey <your_key_here>
+gptdocwriter --apiKey sk-abcdefg
 
 # Generate documentation for specific files and crawl others
 gptdocwriter --initialFiles utils.js,gptdocument.js
