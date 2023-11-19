@@ -25,7 +25,7 @@ entryPoint defaults to current working directory
 
 ## Usage
 
-The various command line arguments include. Combine as needed. Call --apiKey first. Fundamentally this tool just creates a thread to read files and output a file for reach file read, with context building with each file. At the end we write a README.md which should account for the knowledge of your files that GPT accumulated over the process.
+The various command line arguments include. Combine as needed. Call --apiKey first. Fundamentally this tool just creates a thread to read files and output a file for each file read, with context building with each file. At the end we write a README.md which should account for the knowledge of your files that GPT accumulated over the process.
 
 ```bash
 
