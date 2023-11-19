@@ -29,11 +29,11 @@ The various command line arguments include. Combine as needed. Call --apiKey fir
 
 ```bash
 
-#defaults to current working directory
-gptdocwriter --entryPoint path/to/src
-
 # Set the API key for OpenAI services
 gptdocwriter --apiKey sk-abcdefg
+
+#defaults to current working directory
+gptdocwriter --entryPoint path/to/src
 
 # Generate documentation for specific files before crawling extensions in the order they appear
 gptdocwriter --initialFiles utils.js,gptdocument.js
