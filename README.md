@@ -3,9 +3,15 @@
 This uses the beta thread and assistant features of the official [openai node API](https://github.com/openai/openai-node). See [Reference](https://platform.openai.com/docs/api-reference/assistants)
 
 For global usage:
+
 `npm i -g gptdocwriter`
 
+Set API Key (saved to the library folder (keep private!!) in config.txt):
+
+`gptdocwriter --apiKey sk-abcdefg`
+
 Then, from your desired folder:
+
 `gptdocwriter --initialFiles index.js,utils.js --extensions .js,.jsx --excluded dist,node_modules --model gpt-4-1106-preview`
 
 entryPoint defaults to current working directory
@@ -56,9 +62,6 @@ gptdocwriter --outputFormat .py
 gptdocwriter --readme Summarize this in a digestible format for folks who got a D in English
 ```
 
-Set API Key (saved to the library folder (keep private!!) in config.txt)
-
-`gptdocwriter --apiKey sk-abcdefg`
 
 Or set in utils.js and execute this locally via `node gptdocument.js xxx`
 
