@@ -1,57 +1,46 @@
----
-path: ./documentation/gptdocument.js.md
-title: gptdocument.js
----
+# Gptdocument.js
 
-# `gptdocument.js`
+In lines where code meets command and plea,
+A script, gptdocument.js, we now see.
+A Node environment where the tool shall thrive,
+For generating docs, makes our codebase alive.
 
-`gptdocument.js` is the chief orchestrator of the `gptdocwriter` symphony. With the suave simplicity of a maestro's baton, it turns the cacophony of source files into a harmonious documentation concerto. When invoked, it meticulously follows the sheet music of command-line arguments, resulting in a transcendent performance of organized markdown files that speak volumes about your code.
+Invoke with shebang, the Node interpreter's call,
+To kickstart the process that shall not stall.
+From utils.js import the functions, arms spread,
+`generateDocumentation` and `args`, by which we're led.
 
-## Shebang and Imports
+Arguments first, from CLI parsed with care,
+The API key, an entrance so fair:
+If set, acknowledgment in console is cast,
+Saved then to a library, secure and fast.
 
-```javascript
-#!/usr/bin/env node
+Extensions, initialFiles, paths to exclude,
+Arrays they become, in solitude.
+With no explicit settings, defaults come to play,
+`.js`, `.ts`, and more, extensions hold sway.
 
-import {generateDocumentation, args} from './utils.js'
-```
+Now to the heart, the document generator's thrust:
+From the entry point given or the working directory, as just.
+A crawl through the files, where documentation's keen,
+Excluding what's redundant, the routine unseen.
 
-At the very top lies the *shebang*, which is not a sound effect from a retro Batman episode, but an instruction that tells the system this script should be run with Node.js. The import from `utils.js` includes the `generateDocumentation` function and the parsed `args` obtained from CLI arguments.
+The command line a guide, construct your call:
+Set API key, entry point, model and all.
+From the heavens, the GPT model selected,
+Or leave to default, let the code be directed.
 
-## CLI Configuration Handling
+The developer's woes, their troubles to lessen,
+Write, exclude, tailor prompts as a lesson.
+Input and output, in formats you decree,
+In the boats of code, set their structure free.
 
-```javascript
-if(args.apiKey) {
-    console.log("Setting api key (saved to this library's install location)");
-} else {
-    // ... generateDocumentation call
-}
-```
+Arguments amassed, to the function fed,
+The script churns and toils, until all is said.
+Scribing documentation, a README too,
+Embodied in tokens of code, ever anew.
 
-If an `apiKey` is specified, the script acknowledges this and assures the user it will be memorized within the install location of the library. Anxiety about forgetting the API key is left at the doorstep; your secret is safe here.
-
-## Generating Documentation
-
-This part of the script is where the magic happens. Should the `apiKey` bit feel unnecessary (because maybe the script is trusting the library to know what it's doing), it gears up to generate documentation. It's like watching Mary Poppins tidy up a room — everything flies into its proper place, creating order from chaos:
-
-```javascript
-generateDocumentation(
-    args.entryPoint ? args.entryPoint : process.cwd(), 
-    args.initialFiles ? args.initialFiles : undefined, 
-    args.extensions ? args.extensions : ['.js', '.ts', '.mjs', '.jsx', '.tsx'], 
-    args.excluded ? args.excluded : ['dist','node_modules']
-);
-```
-
-Each argument is dutifully passed into `generateDocumentation`, transforming strings into arrays where necessary, and filling in defaults for any stage fright amongst the CLI arguments.
-
-## CLI Usage
-
-The script concludes with a grand aria — a comprehensive comment enumerating the possibilities of CLI argument combinations. This repertoire is for those who fancy flexibility, allowing various selections to tailor the documentation generation process according to one's desires. It elucidates parameters from entry points to exclusion lists, teaching a masterclass on how to drive the `gptdocwriter`. Whether you're generating for an audience of JavaScript aficionados or TypeScript connoisseurs, you can customize the performance to perfection.
-
-## Example Commands
-
-Beneath the core script lies an encore of example commands, instilling in users the courage to face the tempest of their own command line. It's a booster shot of confidence, reassuring you that, yes, even mere mortals can wield the power of automatic documentation.
-
----
-
-In essence, `gptdocument.js` is your loyal conductor, swinging its wand to and fro, passionately pouring its soul into every note (or file, if you will). It beseeches you to press Enter and behold as your terminal transforms into an amphitheater of anthology generation, for it's not just a script but a performance by the code virtuoso within you. Now, stand back and let the documentation recital commence! (And remember, no intermission cookies allowed near the keyboard.)
+Thus gptdocument.js, a script so composed,
+In iambic pentameter, its usage disclosed.
+Employ it, dear coder, let its virtues be known,
+For in the sea of documentation, you're not alone.

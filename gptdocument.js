@@ -67,4 +67,6 @@ gptdocwriter --readme Summarize this in a digestible format for folks who got a 
 # Rate Limit requests (default 12.5sec for GPT 4 preview, change as necessary, we'll adapt too as rate limits are uncapped)
 gptdocwriter --rateLimit 20
 
+# Don't clear the thread at the end (default else it would keep context on the next folder)
+gptdocwriter --keepThread
 */

@@ -25,7 +25,7 @@ entryPoint defaults to current working directory
 
 ## Usage
 
-The various command line arguments include. Combine as needed. Call --apiKey first.
+The various command line arguments include. Combine as needed. Call --apiKey first. Fundamentally this tool just creates a thread to read files and output a file for reach file read, with context building with each file. At the end we write a README.md which should account for the knowledge of your files that GPT accumulated over the process.
 
 ```bash
 
@@ -68,7 +68,8 @@ gptdocwriter --readme Summarize this in a digestible format for folks who got a 
 # Rate Limit requests (default 12.5sec for GPT 4 preview, change as necessary, we'll adapt too as rate limits are uncapped)
 gptdocwriter --rateLimit 20
 
-
+# Don't clear the thread at the end (default false else it would keep context on the next folder)
+gptdocwriter --keepThread
 ```
 
 ![cap](./documentation/Capture.PNG)
@@ -98,11 +99,6 @@ See a repo where I applied this to a fairly hefty codebase: [JS Maze Generator w
 ### GPT generated docs below, with extra instructions to use strict iambic pentameter:
 
 - Generated with: `node gptdocument.js --excluded server.js,node_modules,dist --initialFiles package.json,utils.js --cleanup --extraInstructions Write EVERYTHING in iambic pentameter verse without exception.`
-
-
----
-title: README.md
----
 
 # GPT Doc Writer 📜✍️
 
@@ -178,5 +174,3 @@ This README will serve as lantern's light.
 
 
 
-
-.... I did not write this cringe.

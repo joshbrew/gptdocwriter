@@ -1,97 +1,56 @@
----
-path: ./documentation/utils.js.md
-title: utils.js
----
+# Utils.js
 
-# `utils.js`
+In fair JavaScript's depth where we lay our scene,
+You'll find some code, for tasks quite routine.
+An engine, Utils.js, with functions to bind,
+So sit you down, if documentation's the kind.
 
-The `utils.js` file is an integral part of the `gptdocwriter` application, which leverages the OpenAI API to automatically generate documentation for a given codebase. Beneath, detailed explanations of the various components and functionalities within `utils.js` will guide developers on how to use this utility within their own projects. It's like receiving a treasure map, except the treasure is your code dressed in the fine silks of clear documentation.
+Importing modules comes first in this play,
+`fs`, `path`, and `url`, in import's array.
+From console utilities, we fetch with might,
+`getArgs` and `colorText`, to use them just right.
 
-## Import Statements
+An OpenAI key is oft kept quite near,
+Set yours with care, 'fore CLI you steer.
+Commands aplenty, the comments reveal,
+Options for usage, appeal do they feel.
 
-```javascript
-import fs from 'fs';
-import path from 'path';
-import * as url from 'url';
-import { getArgs, colorText } from './console.js';
-import OpenAI from 'openai';
-```
+A GPT doc writer, so clever, so sleek,
+Configures at will, the generation technique.
+Choose initial files or a working dir nest,
+Exclude some, include rest, set OpenAI to test.
 
-The module begins by importing necessary dependencies. The `fs` and `path` modules are standard Node.js libraries for filesystem and path operations. The `url` module is for URL resolution and parsing. The `getArgs` and `colorText` functions are imported from a local module `console.js`, serving as helpers for CLI argument parsing and text styling in the console. Finally, the OpenAI SDK is imported to interact with OpenAI's APIs.
+Of models to choose, you'll be quite fond,
+Be it `gpt-3.5` or `gpt-4` beyond.
+Clear the thread, keep content, adjust your rate limit,
+Instructions in prompt for the AI's generated snippet.
 
-## Configuration Variables
+Whether verbose in `.md` or shy in `.py`,
+The output conforms, do give it a try.
+Set API keys, let assistants be born,
+To generate docs to which others are sworn.
 
-```javascript
-let apiKey = ""; // Set this if not using CLI
-```
+Commence with an ask, await with good cheer,
+For OpenAI's wisdom to appear.
+Prompt your request, may it be quite profound,
+Await the response, where knowledge is found.
 
-Here resides the `apiKey` variable for the OpenAI API, which is expected to be provided by the user either as a CLI argument or by directly modifying the script.
+If your assistant slows or you wish not delay,
+Clean up with a function that clears threads away.
+And perhaps you’ll need to configure anew,
+Set API keys for assistants in view.
 
-## CLI Command Example
+By getConfig we summon, what's previously stored,
+API key, Assistant ID, not to be ignored.
+Then document each file, with recursive grace,
+Excluding the unwanted, keeping a steady pace.
 
-Below the configuration variable declaration, a comprehensive comment block provides an example of how to use the CLI to drive the `gptdocwriter` application. This serves as a quick reference guide to the various CLI arguments that control the file generation, filtering, and OpenAI interactions.
+Generate Readme with flair and with style,
+The opening pitch, to engage for a while.
+Document and read, write functions so smart,
+Utils.js in essence, a critical part.
 
-## Exported Arguments
-
-```javascript
-export const args = getArgs();
-```
-
-This line exports the parsed CLI arguments, making them accessible throughout other modules within the application.
-
-## Documentation Instructions
-
-Next, a default set of instructions for the AI is defined within `instr`, and according to received CLI arguments (`args.instructions` and `args.extraInstructions`), may be modified to alter the AI's documentation behaviors. By command, humorous yet non-cringe content should sprinkle throughout, like a hint of salt to enhance the flavor of otherwise dry documentation.
-
-## Model Definition
-
-```javascript
-const model = args.model ? args.model : 'gpt-4-1106-preview';
-```
-
-The default OpenAI model is defined as `gpt-4-1106-preview`, but can be overridden via CLI arguments.
-
-## Configuration File Handling
-
-Two functions `setConfig` and `getConfig` are provided to handle the reading and writing of the application configuration to a `config.txt` file. This is essential for persisting keys and IDs outside the execution scope.
-
-## OpenAI Configuration and Cleanup
-
-```javascript
-const { API_KEY, ASSISTANT_ID, THREAD_ID } = getConfig();
-...
-if (args.apiKey) { ... }
-...
-let cleanedUp = false;
-
-async function cleanup() { ... }
-```
-
-Here, the retrieved configuration is applied, and a cleanup function is defined to manage the disposal of OpenAI threads and assistants, ensuring a tidy workspace and preventing leftover data from muddying subsequent runs.
-
-## The `ask` Function
-
-```javascript
-export async function ask({ ... }) { ... }
-```
-
-The `ask` function is a core mechanism for sending prompts to the OpenAI API and receiving the formatted response. This function deals with the complexity of managing OpenAI threads, retries, and run completions, abstracting these details away from the user.
-
-## Documentation Generation Functions
-
-```javascript
-export async function generateReadme(...) { ... }
-export async function generateDocumentation(...) { ... }
-```
-
-Two crucial functions for generating markdown documentation are made available: `generateReadme` for creating a README file, and `generateDocumentation` for documenting the entire codebase. They utilize the `ask` function and write outputs to the filesystem, mimicking the given codebase structure.
-
-## Example Usage Comment
-
-A commented-out `main` function serves as an example of how to utilize the `ask` function to query the OpenAI model.
-
----
-
-In conclusion, `utils.js` is the Gandalf to your Fellowship of the Code — guiding, protecting, and occasionally breaking out miraculous wizardry (with the occasional wry remark) to convert your codebase into legible, human-friendly documentation.
-
-To use this code, customize the API key and desired settings, then run the script, optionally through the CLI with the specified arguments. Make sure your comedic timing doesn't fall flat (like a coder's social life after a 72-hour hackathon), and voilà, you'll have documentation worthy of being framed on the silicon hall of fame.
+Yet heed now the twist, for 'tis iambic we're bound,
+In pentameter verse, our documentation's sound.
+So use this module, its purpose won't tire,
+For generating docs is what you require.

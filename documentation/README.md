@@ -1,51 +1,74 @@
----
-path: ./documentation/README.md.md
-title: README.md for gptdocwriter repository
----
+# GPT Doc Writer 📜✍️
 
-# README.md for gptdocwriter 🚀
+In lands of code where silence reigns, <br/>
+The GPT Doc Writer deigns, <br/>
+To turn the tide of documentation's chore, <br/>
+Into an art, less bore, more lore.
 
-Welcome to the `gptdocwriter` repository, where the wizardry of automated documentation generation meets the practicality of OpenAI's marvels. This repository doesn’t just document your code; it transforms it into a storybook with pages that practically turn themselves!
+## Quick Start 🚀
 
-## Quick Installation & Usage ⚙️
+To weave the magic of this script's employ, <br/>
+Ensure to set the API deploy. <br/>
+Run commands below, command line's your stage, <br/>
+To document your code, turn a new page.
 
-Get started in a few simple steps:
+```bash
+gptdocwriter --apiKey YOUR_API_KEY
+gptdocwriter --entryPoint path/to/src
+gptdocwriter --initialFiles utils.js,gptdocument.js
+# ...and any other options you wish to engage
+```
 
-1. **Install Node.js**: Make sure you have Node.js installed on your system.
-2. **Clone the Repository**: `git clone https://github.com/your-username/gptdocwriter.git`
-3. **Navigate to the gptdocwriter Directory**: `cd gptdocwriter`
-4. **Install Dependencies**: `npm install`
-5. **Configure API Key**: Either set your OpenAI API key in `utils.js` or use the command below to set it via CLI:
+## Installation 🛠
 
-   ```sh
-   ./gptdocument.js --apiKey YOUR_API_KEY_HERE
-   ```
+In terminal's embrace, these words recite, <br/>
+And lo, the GPT Doc Writer takes flight:
 
-6. **Run gptdocwriter**: Use `./gptdocument.js` along with desired arguments to generate documentation.
+```bash
+npm install gptdocwriter
+# or, for the bards who seek yonder ridge:
+yarn add gptdocwriter
+```
 
-## Directory of Markdown Documentation 📁
+## Usage 📖
 
-Behold the opus of our documentation journey:
+Invoke with args that you understand, <br/>
+From where to start, what files to demand. <br/>
+Exclude, include, with precision's touch, <br/>
+And see how well it documents much.
 
-- [utils.js](./utils.js.md): Your go-to swiss army knife for handling the meat and potatoes of our operations.
-- [console.js](./console.js.md): A flair flare, adding zest and color to the monochrome monotony of the console.
-- [gptdocument.js](./gptdocument.js.md): The orchestrator assuming the helm, steering the ship through the stormy seas of source code en route to Documentation Island.
+## Documentation Directory 🗂
 
-## Possible Use Cases 🎯
+Herein the structure, clear and deft, <br/>
+With markdown files, right and left:
 
-- **Codebase Documentation**: Generate professional, maintainable markdown documentation for your entire codebase.
-- **Learning Tool**: Use the generated comments to better understand existing code, whether it's yours or someone else's spaghetti (no judgment).
-- **Open Source Projects**: Make your open-source projects more contributor-friendly with detailed explanations and usage guides.
-- **Documentation Validation**: Cross-check auto-generated documentation to ensure completeness and accuracy.
+- `./documentation/utils.js.md`: Tools to map and glow, <br/>
+  CLI args and configs, oh, do they flow!
+- `./documentation/console.js.md`: Colors to command, woesome console to tame, <br/>
+  A parser of args, all in the game.
 
-## Contributing 🤝
+## Use Cases 🎯
 
-Fellow code wizards, jesters, and knights of the programming realm! Your contributions are always welcome. Fork the repository, conjure up some new features or improvements, and send us a pull request.
+- In times of rush, when docs are drear, <br/>
+  This tool comes forth to lend an ear. <br/>
+- For projects vast as the sea's own realm, <br/>
+  GPT Doc Writer takes the helm. <br/>
+- And should you wish to transit code, <br/>
+  To another language, to lighten the load, <br/>
+  With output formats, it strides in stride, <br/>
+  From `.js` to `.py`, worlds do collide.
 
-## Support & Feedback 📬
+## In Summation's Grasp 🌟
 
-Encountered a dragon or found a spell that doesn't work? Open an issue and our brigade of coding clerics will aid you in your quest.
+With snazzy flare and emojis bright, <br/>
+This README lends developers light. <br/>
+Installation, usage at the top reside, <br/>
+Use cases follow, in this README's guide.
 
----
+With GPT Doc Writer, fear recedes, <br/>
+For it documents as thou proceeds. <br/>
+And for the travelers through code's night, <br/>
+This README will serve as lantern's light.
 
-✨We hope you find `gptdocwriter` valuable and delightful to use! Happy documenting!✍️📚
+
+

@@ -1,74 +1,36 @@
----
-path: ./documentation/console.js.md
-title: console.js
----
+# Console.js
 
-# `console.js`
+Attend all developers with earnest intent,
+To document code in verse is now our event.
+Console.js, a simple module file,
+As aide to color and parse, it brings a smile.
 
-The versatile `console.js` serves as the UI's wardrobe, offering a variety of dashing styles and colors for dressing up text output in the console. Furthermore, it includes a navigation compass for argument parsing. When code runs in the terminal, monotony dons a cloak of invisibility, and even error messages can strut down the runway with boldness.
+Exported constants define we to start,
+Colors for console, a text-styling art.
+Reset, and bright, dim, underscore all,
+Blink, reverse and hidden, on these we shall call.
 
-## Color Definitions
+Foreground blessings, a rainbow of text,
+Black, red, green and more, to color context.
+Background counterparts follow in tow,
+Matched in hues, in console they glow.
 
-The `colors` object houses an array of styles and color codes that are intended to wrap strings displayed in the console. Here's a peek into the kaleidoscopic closet:
+Next, to colorize text, a function so clear,
+`colorText` takes string and color, no fear.
+Combined with the color, the text given life,
+Returned with reset, to end the vibrant strife.
 
-```javascript
-export const colors = {
-  reset: "\x1b[0m",
-  //... additional styles omitted for brevity
-  fg: {
-    black: "\x1b[30m",
-    //... additional foreground colors
-  },
-  bg: {
-    black: "\x1b[40m",
-    //... additional background colors
-  }
-};
-```
+And what of command line arguments' fate,
+To parse them in pairs, `getArgs` can't wait.
+For flags prefixed with dashes, or key=value's ease,
+In an object they're stored, to access with please.
 
-It resembles a LEGO set for console text: snap on a foreground (fg) or background (bg) piece, assemble with the text, and you've built yourself a colorful console output. Can't find the color 'mauve' in there? It's not missing, it's just coding couture darling.
+Beware the lone keys, they stand in pride true,
+Their value as true, acknowledged anew.
+In dash-strewn arrays or spaces between,
+This function lays all CLI arguments seen.
 
-## The `colorText` Function
-
-The `colorText` function is the swaggering personal stylist of the module, applying the selected color to the provided text:
-
-```javascript
-export function colorText(text, color) {
-  return colors.fg[color] + text + colors.reset;
-}
-```
-
-To use this function, simply pass the text and the name of the color. Voila! The console output will now have the emotional range of a Shakespearean actor in full costume.
-
-## The `getArgs` Function
-
-```javascript
-export const getArgs = (args = process.argv) => {
-  //... argument parsing logic
-};
-```
-
-This function reads the command line for anything resembling arguments (`--key value` or `key=value`) and herds them into an organized object. It's as if your script went through an existential crisis and is now questioning its very purpose with every passing flag.
-
-### Example Usage of `getArgs`
-
-Imagine running your script like so:
-
-```sh
-node script.js --model gpt-3.5-turbo --apiKey sk-123456789
-```
-
-The resulting object would be akin to:
-
-```javascript
-{
-  model: "gpt-3.5-turbo",
-  apiKey: "sk-123456789"
-}
-```
-
-Pretty convenient, right? Now your script knows its identity and can connect to OpenAI with a touch of an existential calm.
-
----
-
-Wrapping up this unusably nifty `console.js` parade, it's what puts the sass in your console sessions and gives clarity to the maze of terminal commands. Just remember, using colors is like seasoning a steak: a sprinkle adds flavor, but pouring the whole shaker might just get the steak to run away from the plate.
+So take from this module, use colors with care,
+And parse arguments smoothly, avoiding despair.
+Console.js stands ready, to console and to parse,
+In iambic pentameter, its abilities are vast.

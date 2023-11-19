@@ -45,7 +45,7 @@ gptdocwriter --extraInstructions Mention the CLI input arguments
 # Specify the project name within the readme
 gptdocwriter --name gptdocwriter
 
-# Change the output format to another extension than .md, e.g. we could transpose files from one programming language to another 
+# Change the output format to another extension than .md, e.g. we could transpose files from one programming language to another
 gptdocwriter --outputFormat .py
 
 # Adjust the readme content template
@@ -53,6 +53,9 @@ gptdocwriter --readme Summarize this in a digestible format for folks who got a 
 
 # Rate Limit requests (default 12.5sec for GPT 4 preview, change as necessary, we'll adapt too as rate limits are uncapped)
 gptdocwriter --rateLimit 20
+
+# Don't clear the thread at the end (default else it would keep context on the next folder)
+gptdocwriter --keepThread
 
 */
 
@@ -66,7 +69,7 @@ Your documentation should build upon each file's context as you are fed them in 
 
 Make it clear for readers how to use the code.
 
-Responses will be parsed as if they are ${args.outputFormat ? args.outputFormat : '.md'} files, for each file you are given, and written to file paths like ./documentation/relpath/filename.ext.${args.outputFormat ? args.outputFormat : '.md'}, mirroring the repository structure, and should look like any other detailed, easily readable markdown (or otherwise specified) documentation.
+Responses will be parsed as if they are ${args.outputFormat ? args.outputFormat : '.md'} files, for each file you are given, and written to file paths like ./documentation/relpath/filename.ext.${args.outputFormat ? args.outputFormat : '.md'}, mirroring the repository structure, and should look like any other detailed, easily readable markdown (or otherwise specified) documentation on github (e.g. the first line should only be a hashtag title).
 
 `;
 
@@ -318,7 +321,7 @@ export async function ask({
 
       let responses = await openai.beta.threads.messages.list(threadId, {limit:1});
 
-      if(deleteThread) {
+      if(deleteThread && !args.keepThread) {
           await openai.beta.threads.del(threadId); //cleanup
           setConfig(undefined,undefined,false);
       }
@@ -359,7 +362,7 @@ export async function generateReadme(entryPoint, threadId, instructions=instr, o
           model,
           instructions,         
           threadId,
-          deleteThread:true,
+          deleteThread:args.keepThread ? false : true,
           deleteAssistant:args.cleanup //reuse assistant if not specified
         }
       )).text;
@@ -369,9 +372,9 @@ export async function generateReadme(entryPoint, threadId, instructions=instr, o
 
       if(readmeContent.startsWith('```')) { //parse off any excess markdown brackets
         if(readmeContent.startsWith('```markdown')) {
-          readmeContent = readmeContent.substring(11,readmeContent.length-3);
+          readmeContent = readmeContent.substring(11,readmeContent.length-4);
         } else 
-          readmeContent = readmeContent.substring(3,readmeContent.length-3);
+          readmeContent = readmeContent.substring(3,readmeContent.length-4);
       }
       // Write the README file
       fs.writeFileSync(readmePath, readmeContent);
