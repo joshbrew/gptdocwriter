@@ -37,7 +37,7 @@ gptdocwriter --extensions js,ts,tsx,jsx
 # Choose the GPT-4 model variant to use
 gptdocwriter --model gpt-4-turbo-1106
 
-# Tidy up after generating documentation
+# Clear current assistant before/after generating documentation (will be cleared if instructions are updated)
 gptdocwriter --cleanup
 
 # Tailor the prompt for the AI instead of the default prompt
