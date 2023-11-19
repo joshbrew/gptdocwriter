@@ -64,4 +64,7 @@ gptdocwriter --outputFormat .py
 # Adjust the readme content template
 gptdocwriter --readme Summarize this in a digestible format for folks who got a D in English
 
+# Rate Limit requests (default 12.5sec for GPT 4 preview, change as necessary, we'll adapt too as rate limits are uncapped)
+gptdocwriter --rateLimit 20
+
 */

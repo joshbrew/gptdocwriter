@@ -1,78 +1,75 @@
-# GPTDocWriter :bookmark_tabs: :sparkles:
-
-Embrace the muse of documentation, where prose is paired with code,
-A repository enriched with AI, a doc-gen tool abode.
-GPTDocWriter wields the pen of GPT-4's might,
-To craft the docs that shadow software, bringing its logic to light.
-
+---
+title: README.md
 ---
 
-## Quick Start :rocket:
+# GPT Doc Writer 📜✍️
 
-### Installation :wrench:
+In lands of code where silence reigns,
+The GPT Doc Writer deigns,
+To turn the tide of documentation's chore,
+Into an art, less bore, more lore.
+
+## Quick Start 🚀
+
+To weave the magic of this script's employ,
+Ensure to set the API deploy.
+Run commands below, command line's your stage,
+To document your code, turn a new page.
 
 ```bash
-npm install -g gptdocwriter
+gptdocwriter --apiKey YOUR_API_KEY
+gptdocwriter --entryPoint path/to/src
+gptdocwriter --initialFiles utils.js,gptdocument.js
+# ...and any other options you wish to engage
 ```
 
-Configure your API key to unlock the AI's insights:
+## Installation 🛠
+
+In terminal's embrace, these words recite,
+And lo, the GPT Doc Writer takes flight:
 
 ```bash
-gptdocwriter --apiKey your-openai-key
+npm install gptdocwriter
+# or, for the bards who seek yonder ridge:
+yarn add gptdocwriter
 ```
 
-### Usage :computer:
+## Usage 📖
 
-Generate documentation effortlessly with a simple command:
+Invoke with args that you understand,
+From where to start, what files to demand.
+Exclude, include, with precision's touch,
+And see how well it documents much.
 
-```bash
-gptdocwriter --initialFiles yourEntryPoint.js
-```
+## Documentation Directory 🗂
 
-Voila! Documentation emerges, like sunlight through the dawn.
+Herein the structure, clear and deft,
+With markdown files, right and left:
 
----
+- `./documentation/utils.js.md`: Tools to map and glow,
+  CLI args and configs, oh, do they flow!
+- `./documentation/console.js.md`: Colors to command, woesome console to tame,
+  A parser of args, all in the game.
 
-## Documentation Directory :file_folder:
+## Use Cases 🎯
 
-- [`package.json`](/documentation/package.md)
-- [`gptdocument.js`](/documentation/gptdocument.md)
+- In times of rush, when docs are drear,
+  This tool comes forth to lend an ear.
+- For projects vast as the sea's own realm,
+  GPT Doc Writer takes the helm.
+- And should you wish to transit code,
+  To another language, to lighten the load,
+  With output formats, it strides in stride,
+  From `.js` to `.py`, worlds do collide.
 
----
+## In Summation's Grasp 🌟
 
-## Features :star2:
+With snazzy flare and emojis bright,
+This README lends developers light.
+Installation, usage at the top reside,
+Use cases follow, in this README's guide.
 
-- **AI-Powered Documentation**: Utilize the latest GPT-4 model to generate in-depth documentation for your codebase.
-- **Customizable**: Tailor the documentation process with a myriad of command-line arguments.
-- **Extensible**: Supports various file extensions by default and allows for custom ones as needed.
-- **Clean-Up Mechanism**: Maintain a neat workspace by cleaning up threads post-documentation generation.
-
-## Use Cases :bulb:
-
-- **Large Codebases**: Navigating vast seas of code? Let the AI assistant chart the documentation course.
-- **API Documentation**: Have APIs that need documenting? This tool will create coherent and comprehensive guides.
-- **Education and Learning**: Study how documentation is crafted by examining AI-generated examples.
-- **Continuous Integration**: Integrate into your CI pipeline for up-to-date documentation at all times.
-
-## Contributing :handshake:
-
-Your insights and code are the winds that propel this project forward. If you're looking to contribute, simply:
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License :page_with_curl:
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## Acknowledgements :clap:
-
-- [OpenAI](https://openai.com/) for their AI models.
-- All the contributors who pour their time into open source.
-
----
-
-Embrace the future of documentation with GPTDocWriter, where clarity and precision meet AI's fertile mind. 📜✨
+With GPT Doc Writer, fear recedes,
+For it documents as thou proceeds.
+And for the travelers through code's night,
+This README will serve as lantern's light.

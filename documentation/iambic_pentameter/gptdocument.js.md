@@ -1,89 +1,53 @@
-# `gptdocument.js` Documentation for GPTDocWriter
-
-In code's firmament, a script does wake,
-`gptdocument.js`, for document's sake.
-Harnessing arguments, paths and skills,
-To render prose where technicality fills.
+---
+title: gptdocument.js
+---
 
 ## Overview
 
-This script, dressed in Node's command line cloak,
-Serves as the heart where our documentation spoke.
-With `utils.js` and its exports in play,
-It processes files in an automated way.
+Behold now, `gptdocument.js`, the guide,
+That charts a course through source code, far and wide.
+A script designed to activate with speed,
+To document oneself is its creed.
 
-## Utilization
+## The Essence of gptdocument.js
 
-### Set API Key
+In this here script, where arguments convene,
+`generateDocumentation` takes the scene.
+From `./utils.js` 'tis import drawn,
+And hence the documentation's dawn.
 
-Should an API key be what you wish,
-The script will store it like a treasured dish.
-Trust in these lines wherein credentials set,
-For future use, without a hint of fret.
+## CLI Arguments Transformation
 
-```bash
-gptdocwriter --apiKey your-secret-key
-```
+Converting args that passed as strings do lie,
+To arrays indeed, with eagle's eye.
+Should `apiKey` be set, 'twill note it down,
+In library's heart, where settings are found.
 
-### Generate Documentation
+But if instead, parameters are plenty,
+With `extensions`, `initialFiles`, not empty,
+Then `generateDocumentation` shall begin,
+And through the codebase it will deftly spin.
 
-When API key's set, unto the main show,
-Where files and directories come and go.
-Convert arguments, lest they be astray,
-To arrays that guide the documenter's way.
+## Example Commands
 
-Recording the structs from whence code springs,
-Extensions, paths, and such essential things.
-Array conversions, subtle, rightly, done,
-Prepare the field for the generator to run.
+To run this script, with CLI command,
+Set `apiKey` first, at forefront stand.
 
-```bash
-gptdocwriter --initialFiles utils.js,gptdocument.js
-gptdocwriter --excluded server.js,node_modules,dist
-gptdocwriter --extensions js,ts,tsx,jsx
-gptdocwriter --instructions For each file, write a sonnet about it
-```
+Combine then arguments as ye may,
+And run the script without delay.
+Pass entry points, exclude, and files of yore,
+Set models, clear states, do so much more.
 
-### Customization Options
+## Generating Documentation
 
-Diverse flags presented for the scribe's craft,
-Their varied motions, forward and abaft:
+One can, with ease, tell which files to crown,
+Select extensions, directories down.
+Specify if models shall leave or stay,
+Or how the output format shall display.
 
-- `--model` - set the AI's sage wit,
-To "gpt-4-turbo", its knowledge to commit.
+## Final Verse 
 
-- `--cleanup` - maintain tidiness, post-run,
-Cleaning threads, that no confusion be done.
-
-- `--extraInstructions` - to AI, a whisper,
-Detailed guidance, like a secret scripture.
-
-- `--name` - the projected title, declared and bright,
-Informs the README, casting its light.
-
-- `--outputFormat` - switch the prose attire,
-From markdown's delight to python's fire.
-
-- `--readme` - the preamble's pattern can shift,
-To a report on genetics, if you catch my drift.
-
-## Command Example
-
-The ways to invoke this script are myriad,
-Mixed as you wish, their outcomes period:
-
-```bash
-# Set API key first
-gptdocwriter --apiKey sk-abcdefg
-
-# Combine arguments for desired action
-gptdocwriter --initialFiles utils.js,gptdocument.js --excluded server.js,node_modules --extensions js,ts,tsx,jsx --model gpt-4-turbo-1106 --cleanup --instructions Write a sonnet about it --extraInstructions List the input arguments for the cli --name gptdocwriter --outputFormat .py --readme Summarize into a report on donkey genetics.
-```
-
-This script then runs, with drumming heart,
-Creating docs from code, a modern art.
-
-Invoke these truths, with terminal's might,
-To conjure docs from daybreak to night.
-Swiftly through Node's realm, let the script stretch,
-And in its wake, wisdom it'll etch.
+Here ends our tale of `gptdocument.js`,
+A simple use, no need to vex.
+In lines of ten with beats that five do hold,
+We've recounted tales of source code, bold.
