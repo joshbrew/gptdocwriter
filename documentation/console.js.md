@@ -1,36 +1,56 @@
-# Console.js
 
-Attend all developers with earnest intent,
-To document code in verse is now our event.
-Console.js, a simple module file,
-As aide to color and parse, it brings a smile.
+# `console.js`
 
-Exported constants define we to start,
-Colors for console, a text-styling art.
-Reset, and bright, dim, underscore all,
-Blink, reverse and hidden, on these we shall call.
+The `console.js` file provides utility functions for console output styling and parsing command-line interface (CLI) arguments in the context of the GPT Doc Writer application.
 
-Foreground blessings, a rainbow of text,
-Black, red, green and more, to color context.
-Background counterparts follow in tow,
-Matched in hues, in console they glow.
+---
 
-Next, to colorize text, a function so clear,
-`colorText` takes string and color, no fear.
-Combined with the color, the text given life,
-Returned with reset, to end the vibrant strife.
+## Color Management
 
-And what of command line arguments' fate,
-To parse them in pairs, `getArgs` can't wait.
-For flags prefixed with dashes, or key=value's ease,
-In an object they're stored, to access with please.
+### `colors` Object
 
-Beware the lone keys, they stand in pride true,
-Their value as true, acknowledged anew.
-In dash-strewn arrays or spaces between,
-This function lays all CLI arguments seen.
+An object holding ANSI escape codes for styling text in the terminal. It defines styles like reset, bright, dim, different colors for both foreground and background, and more.
 
-So take from this module, use colors with care,
-And parse arguments smoothly, avoiding despair.
-Console.js stands ready, to console and to parse,
-In iambic pentameter, its abilities are vast.
+Usage example for setting text color:
+
+```javascript
+console.log(colors.fg.green, "This text will be green", colors.reset);
+```
+
+### `colorText` Function
+
+A utility function that takes a string and a color name as arguments and returns the string with the appropriate color applied.
+
+Usage example:
+
+```javascript
+console.log(colorText("This text will be blue", "blue"));
+```
+
+---
+
+## Command-line Argument Parsing
+
+### `getArgs` Function
+
+Parses the provided `process.argv` array (or a custom array of arguments) into a usable object. Handles both `--key value` and `key=value` style arguments. If a key is provided without a value, it will be set to `true`. Arguments with comma-separated values will be split into arrays.
+
+Usage example when invoked without parameters:
+
+```javascript
+const args = getArgs(); // Parses the current CLI arguments
+console.log(args.entryPoint); // Retrieve a specific argument
+```
+
+Usage example with custom argument array:
+
+```javascript
+const customArgs = getArgs(['--model', 'gpt-4', '--excluded=node_modules,dist']);
+console.log(customArgs);
+```
+
+---
+
+## Conclusion
+
+The `console.js` utility file is the unsung hero whose job involves making sure your terminal doesn't look like an old paper transcript from UNIVAC. You know, back when terminals were as colorless as your Diet Coke. Feel free to bedazzle your log outputs with the elegance of 1980s era text styling, and parse CLI inputs with less overhead than a Soviet-era bureaucracy.

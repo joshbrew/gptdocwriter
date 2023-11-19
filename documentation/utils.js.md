@@ -1,56 +1,66 @@
-# Utils.js
 
-In fair JavaScript's depth where we lay our scene,
-You'll find some code, for tasks quite routine.
-An engine, Utils.js, with functions to bind,
-So sit you down, if documentation's the kind.
+# `utils.js`
 
-Importing modules comes first in this play,
-`fs`, `path`, and `url`, in import's array.
-From console utilities, we fetch with might,
-`getArgs` and `colorText`, to use them just right.
+The `utils.js` file serves as a central hub for utility functions needed by the GPT Doc Writer application. This application facilitates the automated creation of comprehensive developer documentation by leveraging OpenAI's GPT-4 model. This file handles the parsing of command-line interface (CLI) arguments, manages configuration settings, and controls interactions with the OpenAI API.
 
-An OpenAI key is oft kept quite near,
-Set yours with care, 'fore CLI you steer.
-Commands aplenty, the comments reveal,
-Options for usage, appeal do they feel.
+---
 
-A GPT doc writer, so clever, so sleek,
-Configures at will, the generation technique.
-Choose initial files or a working dir nest,
-Exclude some, include rest, set OpenAI to test.
+## Getting Started
 
-Of models to choose, you'll be quite fond,
-Be it `gpt-3.5` or `gpt-4` beyond.
-Clear the thread, keep content, adjust your rate limit,
-Instructions in prompt for the AI's generated snippet.
+To use this utility, you will typically begin by setting the API key for OpenAI services. You can do this either through the CLI argument `--apiKey` or by modifying the `apiKey` variable in the code directly.
 
-Whether verbose in `.md` or shy in `.py`,
-The output conforms, do give it a try.
-Set API keys, let assistants be born,
-To generate docs to which others are sworn.
+Example CLI usage:
 
-Commence with an ask, await with good cheer,
-For OpenAI's wisdom to appear.
-Prompt your request, may it be quite profound,
-Await the response, where knowledge is found.
+```bash
+gptdocwriter --apiKey sk-abcdefg
+```
 
-If your assistant slows or you wish not delay,
-Clean up with a function that clears threads away.
-And perhaps you’ll need to configure anew,
-Set API keys for assistants in view.
+You can combine a variety of arguments to control the behavior of the GPT Doc Writer, such as specifying entry points, excluding files, or changing the output format of the generated documentation.
 
-By getConfig we summon, what's previously stored,
-API key, Assistant ID, not to be ignored.
-Then document each file, with recursive grace,
-Excluding the unwanted, keeping a steady pace.
+### Configuration and CLI Arguments
 
-Generate Readme with flair and with style,
-The opening pitch, to engage for a while.
-Document and read, write functions so smart,
-Utils.js in essence, a critical part.
+The `args` constant is exported from the file and is initialized by calling the `getArgs` function from `./console.js`. It contains the processed CLI arguments as an object, which can be used throughout other parts of the application.
 
-Yet heed now the twist, for 'tis iambic we're bound,
-In pentameter verse, our documentation's sound.
-So use this module, its purpose won't tire,
-For generating docs is what you require.
+```javascript
+export const args = getArgs();
+```
+
+### API Key and Assistant Management
+
+The `setConfig` and `getConfig` functions are designed to manage the API key and Assistant ID, storing them in a local configuration file.
+
+### OpenAI Integration
+
+The file imports the `OpenAI` class and initializes it with the API key. It also controls the GPT-4 model choice and access to other models if necessary.
+
+```javascript
+const openai = new OpenAI({
+  apiKey,
+});
+```
+
+### Interaction Function
+
+The `ask` function is a critical part of the code, providing the capability to interact with the chosen OpenAI model using a prompt and receive comprehensive responses. It handles messaging, creating and running threads, and polling for the completion of interactions.
+
+### Documentation Generation
+
+The `generateReadme` and `generateDocumentation` functions are responsible for reading the files and their contents in a provided directory, generating the documentation using GPT-4, and saving it in markdown or other specified formats.
+
+### Usage Example
+
+To generate documentation for your project, you can call the `generateDocumentation` function manually in your script, or use it as part of an automated process:
+
+```javascript
+//generateDocumentation(); // Uncomment and call with appropriate parameters
+```
+
+---
+
+## Warning
+
+While `utils.js` is equipped with error handling, never overestimate its capability to handle the absurd intricacies of your spaghetti code. The AI might just throw a digital tantrum.
+
+---
+
+Hope this gives you a moment of respite from stack overflows and off-by-one errors. Happy documenting!

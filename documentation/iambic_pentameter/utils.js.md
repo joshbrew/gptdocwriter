@@ -1,75 +1,56 @@
----
-title: utils.js
----
+# Utils.js
 
-## Overview
+In fair JavaScript's depth where we lay our scene,
+You'll find some code, for tasks quite routine.
+An engine, Utils.js, with functions to bind,
+So sit you down, if documentation's the kind.
 
-Within this script, ye shall see tools transcend:
-Import and export define the program's end.
-A utility wrought with care and precision,
-Described in verse with poetic vision.
+Importing modules comes first in this play,
+`fs`, `path`, and `url`, in import's array.
+From console utilities, we fetch with might,
+`getArgs` and `colorText`, to use them just right.
 
-## Exports and Functions
+An OpenAI key is oft kept quite near,
+Set yours with care, 'fore CLI you steer.
+Commands aplenty, the comments reveal,
+Options for usage, appeal do they feel.
 
-### `args`
-This object doth contain CLI parsed bits,
-From `getArgs` sourced from console wits.
+A GPT doc writer, so clever, so sleek,
+Configures at will, the generation technique.
+Choose initial files or a working dir nest,
+Exclude some, include rest, set OpenAI to test.
 
-### `setConfig`
-Call upon this method with greatest care,
-For 'twill adjust the config file so fair.
-Hand o'er thee `apiKey` and IDs,
-Save files with ease, just like gentle breeze.
+Of models to choose, you'll be quite fond,
+Be it `gpt-3.5` or `gpt-4` beyond.
+Clear the thread, keep content, adjust your rate limit,
+Instructions in prompt for the AI's generated snippet.
 
-### `getConfig`
-Retrieve, alas, from file the precious keys,
-With this function that dost please.
+Whether verbose in `.md` or shy in `.py`,
+The output conforms, do give it a try.
+Set API keys, let assistants be born,
+To generate docs to which others are sworn.
 
-### `ask`
-Engage with OpenAI, a query make,
-Using models that the genius minds did bake.
-Provide thy prompts, the AI shall endow,
-The desired text, post haste, and that with wow.
+Commence with an ask, await with good cheer,
+For OpenAI's wisdom to appear.
+Prompt your request, may it be quite profound,
+Await the response, where knowledge is found.
 
-### `cleanup`
-Clean ye up previous spills and threads made old,
-To start anew, the tale to be retold.
+If your assistant slows or you wish not delay,
+Clean up with a function that clears threads away.
+And perhaps you’ll need to configure anew,
+Set API keys for assistants in view.
 
-### `generateReadme`
-A README craft with OpenAI's might,
-To guide users through the darkest night.
+By getConfig we summon, what's previously stored,
+API key, Assistant ID, not to be ignored.
+Then document each file, with recursive grace,
+Excluding the unwanted, keeping a steady pace.
 
-### `generateDocumentation`
-The very heart of this noble tool,
-Where documentation is the crowning jewel.
-Pass directories, files, exclusions in a scrawl,
-To document each and every file withal.
+Generate Readme with flair and with style,
+The opening pitch, to engage for a while.
+Document and read, write functions so smart,
+Utils.js in essence, a critical part.
 
-## Usage
-
-Begin with `generateDocumentation` call,
-To weave a documentation web over all.
-For special README, `generateReadme`'s your friend,
-And `ask` for queries that sorely depend,
-On the wisdom of GPT, our AI lend.
-
-## Installation
-
-Set `apiKey`, Run 'ere command you wish,
-With `node gptdocument.js`, or as a dish,
-Served cold with the alias `gptdocwriter`, twist,
-And then observe as text files do exist.
-
-## Setting Configuration
-
-Employ `setConfig` to write to the file,
-Or `getConfig` to check with a smile.
-What's written within shall define the path,
-Of how OpenAI does follow your math.
-
-## Important
-
-This file must be first acknowledged and known,
-Lest ye walk through the valley of code alone.
-Now fare thee well, dear reader, go forth,
-Apply this code, and prove thy worth.
+Yet heed now the twist, for 'tis iambic we're bound,
+In pentameter verse, our documentation's sound.
+So use this module, its purpose won't tire,
+For generating docs is what you require.

@@ -1,74 +1,78 @@
-# GPT Doc Writer 📜✍️
 
-In lands of code where silence reigns, <br/>
-The GPT Doc Writer deigns, <br/>
-To turn the tide of documentation's chore, <br/>
-Into an art, less bore, more lore.
+# GPT Doc Writer 📖✍️
 
-## Quick Start 🚀
+Embark on a journey of automated enlightenment with GPT Doc Writer, the tool that magically transforms your codebase into a beautifully documented haven. Say goodbye to the tedium of manual documentation, and let AI do the heavy lifting! 🚀
 
-To weave the magic of this script's employ, <br/>
-Ensure to set the API deploy. <br/>
-Run commands below, command line's your stage, <br/>
-To document your code, turn a new page.
+---
+
+## Quick Installation & Usage
 
 ```bash
-gptdocwriter --apiKey YOUR_API_KEY
-gptdocwriter --entryPoint path/to/src
-gptdocwriter --initialFiles utils.js,gptdocument.js
-# ...and any other options you wish to engage
+# Install GPT Doc Writer globally
+npm install -g gptdocwriter
+
+# Set your OpenAI API key
+gptdocwriter --apiKey YOUR_OPENAI_API_KEY
+
+# Run GPT Doc Writer in your project directory
+gptdocwriter
 ```
 
-## Installation 🛠
+Feel the breeze of automation as GPT Doc Writer scans your code files, invoking the divine knowledge of GPT-4 to generate docs that even your grandma could understand.
 
-In terminal's embrace, these words recite, <br/>
-And lo, the GPT Doc Writer takes flight:
+---
 
-```bash
-npm install gptdocwriter
-# or, for the bards who seek yonder ridge:
-yarn add gptdocwriter
+## Directory of Markdown Files
+
+```
+/documentation
+    ├── console.md
+    ├── utils.md
+    └── gptdocument.md
+/README.md
 ```
 
-## Usage 📖
+---
 
-Invoke with args that you understand, <br/>
-From where to start, what files to demand. <br/>
-Exclude, include, with precision's touch, <br/>
-And see how well it documents much.
+## Use Cases
 
-## Documentation Directory 🗂
+- **Bringing Life to Legacy Code**: Unearth the secrets of ancient scripts left behind by developer-archaeologists of yore.
+- **Hackathon Heroes**: Hack together a project and generate its documentation in the blink of an eye before the final bell.
+- **Open Source Overachievers**: Attract contributors with your project's immaculate documentation.
+- **Caffeine-Deprived Devs**: Write less docs, drink less coffee, sleep more... maybe.
 
-Herein the structure, clear and deft, <br/>
-With markdown files, right and left:
+---
 
-- `./documentation/utils.js.md`: Tools to map and glow, <br/>
-  CLI args and configs, oh, do they flow!
-- `./documentation/console.js.md`: Colors to command, woesome console to tame, <br/>
-  A parser of args, all in the game.
+## Command Line Arguments
 
-## Use Cases 🎯
+| Argument            | Purpose                                           |
+|---------------------|---------------------------------------------------|
+| `--apiKey`          | Set the API key for OpenAI services               |
+| `--entryPoint`      | Define the directory to start documentation from |
+| `--extensions`      | Specify the file extensions to include            |
+| `--excluded`        | List files or directories to exclude              |
+| `--initialFiles`    | Document specific files first                    |
+| `--model`           | Choose the GPT model to use                       |
+| `--outputFormat`    | Define the output file format                     |
+| `--readme`          | Customize the README content template            |
+| ...                 | And many more!                                    |
 
-- In times of rush, when docs are drear, <br/>
-  This tool comes forth to lend an ear. <br/>
-- For projects vast as the sea's own realm, <br/>
-  GPT Doc Writer takes the helm. <br/>
-- And should you wish to transit code, <br/>
-  To another language, to lighten the load, <br/>
-  With output formats, it strides in stride, <br/>
-  From `.js` to `.py`, worlds do collide.
+Check out [utils.md](./documentation/utils.md) for a full list of supported commands and their celestial powers.
 
-## In Summation's Grasp 🌟
+---
 
-With snazzy flare and emojis bright, <br/>
-This README lends developers light. <br/>
-Installation, usage at the top reside, <br/>
-Use cases follow, in this README's guide.
+## The GPT Doc Writer Promise
 
-With GPT Doc Writer, fear recedes, <br/>
-For it documents as thou proceeds. <br/>
-And for the travelers through code's night, <br/>
-This README will serve as lantern's light.
+🌟 *To maintain the sanity of developers drowned in undocumented code.* 🌟
 
+Unleash the full potential of your code with documentation that sparkles. May the force of CTRL+C and CTRL+V be with you less often.
 
+---
 
+## Disclaimer
+
+Please note that while GPT Doc Writer is powered by AI, it is still susceptible to the occasional hiccup. Always review the generated documentation with human eyes (or, if available, a highly trained capybara).
+
+If you find yourself lost in a *.md file, remember, it's just a doc, not a space-time paradox. Cheers to fewer existential crises! 🥂
+
+---

@@ -1,72 +1,50 @@
-Path: ./documentation/package.json.md
+# `package.json`
 
-# The `package.json` File Overview
+Within this manifest, ye shall find,  
+Details that upon the project bind.  
+GPT-doc writer is its name,  
+An API doc tool of certain fame.
 
-In our noble code, `package.json` stands,
-Defining the project 'gptdocwriter's bands.
-With metadata rich, and settings defined,
-For nodular scripts that are well-combined.
+```json
+{
+  "name": "gptdocwriter",
+  "version": "0.5.1",
+  "description": "GPT 4 Turbo-powered API documentation generator",
+  "main": "./utils.js",
+  "type": "module",
+  "bin": {
+    "gptdocwriter": "./gptdocument.js"
+  },
+  /* more JSON content */
+}
+```
 
-## Project Details
+"version": "0.5.1" does declare,  
+An increment 'fore more's set to prepare.  
+The primary entry, "main", does point,  
+To utility's role in this joint.
 
-- `name`: gptdocwriter's source,
-- `version`: point five, our course,
-- `description`: with prose quite engaging,
-  Turbo-powered docs, forever paging.
+A module, true, sets the scene,  
+With "bin" to link a command serene.  
+Thus, "gptdocwriter" in your shell,  
+Invokes the script 'pon which we dwell.
 
-## Main Entry Point
+"Scripts" within hold commands of might,  
+Run tasks with "npm", 'twixt day and night.  
+"init" sets forth creation's spell,  
+While "dev" will development indwell.
 
-The heart of our code, `./utils.js`,
-Where algorithms run and processes bless.
+From Python's grace to "pip" install,  
+Dependencies that the project enthral,  
+In "keywords" let "esbuild" appear as light,  
+To hint at its purpose with foresight.
 
-## Module Type Declared
+Observe the "nodemonConfig" with care,  
+Environment and ignore in its lair.  
+And "dependencies" express with accord,  
+openai's version, our digital lord.
 
-Declared as a module for modern flair,
-ES6 imports we thus declare.
-
-## Executable Bin
-
-This `bin` holds the file `gptdocwriter`,
-Named after our project, can't be tighter.
-Run with `npx` or add to global sphere,
-To execute as a command that's clear.
-
-## Scripts
-
-Our scripts, they run with great precision:
-- `start`: fires the app with vision,
-- `init`: runs a build that's tiny,
-- `concurrent`: sets tasks not whiney,
-- `dev`: prepares for a dev session,
-- `startdev`: watches for your progression,
-- `python`: our server, it will sway,
-- `pip`: ensures packages installed today,
-- `pwa`: installs for offline scope,
-  Runs `workbox-cli`, we do hope.
-
-## Project Keywords
-
-Just one keyword stands, `esbuild` is it,
-For fast bundling, that's a perfect hit.
-
-## Author and License
-
-Both yet unfilled, a blank canvas they wait,
-The author and license we might debate.
-
-## Nodemon Configuration
-
-For development's friend, `nodemonConfig` bounds,
-Ignores `dist/`, `.temp/` in rounds,
-Environment vars set for us to behold,
-`NODEMON`: true, as it does unfold.
-
-## Dependencies Enlisted
-
-Just one for now, the `openai` prize,
-Version four point seventeen point four in size.
-
-Thus ends our verse on this JSON file,
-A guide well versed, no need for trial.
-Save these words close to your chest,
-In gptdocwriter's docs, they manifest.
+Engage with this, developers bold,  
+Let GPT's doc magic unfold.  
+Rejoice in structure of intricate weaves,  
+Embark with nods to a world of leaves.
