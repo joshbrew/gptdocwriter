@@ -99,11 +99,6 @@ See a repo where I applied this to a fairly hefty codebase: [JS Maze Generator w
 
 - Generated with: `node gptdocument.js --excluded server.js,node_modules,dist --initialFiles package.json,utils.js --cleanup --extraInstructions Write EVERYTHING in iambic pentameter verse without exception.`
 
-
----
-title: README.md
----
-
 # GPT Doc Writer 📜✍️
 
 In lands of code where silence reigns, <br/>
