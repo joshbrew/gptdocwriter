@@ -28,6 +28,10 @@ entryPoint defaults to current working directory
 The various command line arguments include. Combine as needed. Call --apiKey first.
 
 ```bash
+
+#defaults to current working directory
+gptdocwriter --entryPoint path/to/src
+
 # Set the API key for OpenAI services
 gptdocwriter --apiKey sk-abcdefg
 
