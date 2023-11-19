@@ -116,8 +116,7 @@ To document your code, turn a new page.
 
 ```bash
 gptdocwriter --apiKey YOUR_API_KEY
-gptdocwriter --entryPoint path/to/src
-gptdocwriter --initialFiles utils.js,gptdocument.js
+gptdocwriter --entryPoint path/to/src --initialFiles utils.js,gptdocument.js
 # ...and any other options you wish to engage
 ```
 
@@ -127,7 +126,7 @@ In terminal's embrace, these words recite, <br/>
 And lo, the GPT Doc Writer takes flight:
 
 ```bash
-npm install gptdocwriter
+npm install -g gptdocwriter
 # or, for the bards who seek yonder ridge:
 yarn add gptdocwriter
 ```
@@ -144,9 +143,9 @@ And see how well it documents much.
 Herein the structure, clear and deft, <br/>
 With markdown files, right and left:
 
-- `./documentation/utils.js.md`: Tools to map and glow, <br/>
+- [`./documentation/utils.js.md`](./documentation/utils.js.md): Tools to map and glow, <br/>
   CLI args and configs, oh, do they flow!
-- `./documentation/console.js.md`: Colors to command, woesome console to tame, <br/>
+- [`./documentation/console.js.md`](./documentation/console.js.md): Colors to command, woesome console to tame, <br/>
   A parser of args, all in the game.
 
 ## Use Cases 🎯
