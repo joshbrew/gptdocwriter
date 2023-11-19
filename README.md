@@ -25,7 +25,7 @@ The various command line arguments include. Combine as needed. Call --apiKey fir
 # Set the API key for OpenAI services
 gptdocwriter --apiKey sk-abcdefg
 
-# Generate documentation for specific files and crawl others
+# Generate documentation for specific files before crawling extensions in the order they appear
 gptdocwriter --initialFiles utils.js,gptdocument.js
 
 # Exclude files or directories from being documented
