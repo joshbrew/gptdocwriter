@@ -27,34 +27,41 @@ gptdocwriter --apiKey sk-abcdefg
 Combine the following arguments as you wish.
 Then run gptdocwriter or node gptdocument.js with any of these settings:
 # Generate documentation for specific initial files, then crawl the rest of the specified extensions (defaults to js)
+
+#defaults to current working directory
+gptdocwriter --entryPoint path/to/src
+
+# Set the API key for OpenAI services
+gptdocwriter --apiKey sk-abcdefg
+
+# Generate documentation for specific files before crawling extensions in the order they appear
 gptdocwriter --initialFiles utils.js,gptdocument.js
 
-# Exclude specific files or directories from documentation
+# Exclude files or directories from being documented
 gptdocwriter --excluded server.js,node_modules,dist
 
-# Specify file extensions to consider for documentation
+# Specify which file extensions to include in the documentation
 gptdocwriter --extensions js,ts,tsx,jsx
 
-# Define the model to be used - make it turbo!
+# Choose the GPT-4 model variant to use
 gptdocwriter --model gpt-4-turbo-1106
 
-# Clean up the assistant and thread after generating documentation. Threads are cleaned on each new run anyway.
+# Clear current assistant before/after generating documentation (will be cleared if instructions are updated)
 gptdocwriter --cleanup
 
-# Rewrite the default prompt, this repo fundamentally just reads a file then writes in a developing context, ending with a readme.  
-gptdocwriter --instructions For each file, write a sonnet about it
+# Tailor the prompt for the AI instead of the default prompt
+gptdocwriter --instructions Write detailed documentation about each file
 
-# Some extra instructions for the AI, because it's a good listener
-gptdocwriter --extraInstructions Make sure you specifically list the input arguments for the cli
+# Include additional specific instructions
+gptdocwriter --extraInstructions Mention the CLI input arguments
 
-# Tells the readme what the project name is
+# Specify the project name within the readme
 gptdocwriter --name gptdocwriter
 
-# Instead of writing md files, let's transpose to python with a custom prompt!
-gptdocwriter --outputFormat .py  
+# Change the output format to another extension than .md, e.g. we could transpose files from one programming language to another 
+gptdocwriter --outputFormat .py
 
-# We can replace the readme prompt with whatever as well, as it just uses a fill-in-the-blanks template.
-gptdocwriter --readme Summarize what you read into a 3 paragraph report on donkey genetics.
-
+# Adjust the readme content template
+gptdocwriter --readme Summarize this in a digestible format for folks who got a D in English
 
 */

@@ -21,6 +21,9 @@ Here's how you use the command line incantations to conjure up the documentation
 # Set the API key for OpenAI services
 gptdocwriter --apiKey sk-abcdefg
 
+#defaults to current working directory
+gptdocwriter --entryPoint path/to/src
+
 # Generate documentation for specific files and crawl others
 gptdocwriter --initialFiles utils.js,gptdocument.js
 
