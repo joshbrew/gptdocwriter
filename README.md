@@ -1,4 +1,6 @@
 # Documentation Generation Tool with GPT 4 Turbo!
+![d-status](https://img.shields.io/npm/v/gptdocwriter.svg) 
+![d-downloads](https://img.shields.io/npm/dt/gptdocwriter.svg)
 
 This uses the beta thread and assistant features of the official [openai node API](https://github.com/openai/openai-node). See [Reference](https://platform.openai.com/docs/api-reference/assistants)
 
