@@ -1,6 +1,6 @@
 {
   "name": "gptdocwriter",
-  "version": "0.5.1",
+  "version": "0.5.3",
   "description": "GPT 4 Turbo-powered API documentation generator",
   "main": "./utils.js",
   "type": "module",

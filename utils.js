@@ -36,6 +36,9 @@ gptdocwriter --model gpt-4-turbo-1106
 # Clear current assistant before/after generating documentation (will be cleared if instructions are updated)
 gptdocwriter --cleanup
 
+# Restart the thread at the last file read. Do this after a crash if you want to recover your position in the last thread, else it will be deleted on next call
+gptdocwriter --continue
+
 # Tailor the prompt for the AI instead of the default prompt
 gptdocwriter --instructions Write detailed documentation about each file
 
@@ -94,7 +97,7 @@ if(args.extraInstructions || args.instructions || args.outputFormat || args.mode
 const CONFIG_FILE = path.join(url.fileURLToPath(new URL('.', import.meta.url)), 'config.txt');
 
 // Function to set the API key and Assistant ID and save them to a file
-export function setConfig(apiKey, assistantId, threadId) {
+export function setConfig(apiKey, assistantId, threadId, lastFile) {
   let existingConfig = {};
 
   // Check if the config file exists and read it
@@ -121,6 +124,10 @@ export function setConfig(apiKey, assistantId, threadId) {
   if (typeof threadId !== 'undefined') {
     if(threadId === false) delete existingConfig['THREAD_ID'];
     else existingConfig['THREAD_ID'] = threadId;
+  }
+  if (typeof lastFile !== 'undefined') {
+    if(threadId === false) delete existingConfig['LAST_FILE'];
+    else existingConfig['LAST_FILE'] = lastFile;
   }
 
   // Prepare the config data for writing
@@ -153,7 +160,7 @@ export function getConfig() {
 }
 
 // Use getConfig to retrieve the API key and Assistant ID
-const { API_KEY, ASSISTANT_ID, THREAD_ID } = getConfig();
+const { API_KEY, ASSISTANT_ID, THREAD_ID, LAST_FILE } = getConfig();
 
 
 // Set API key if provided
@@ -397,7 +404,7 @@ export async function generateDocumentation(
 
     if(args.cleanup && !cleanedUp) {
       await cleanup();
-    } else if(lastThreadId) { //clear previous thread
+    } else if(lastThreadId && !args.continue) { //clear previous thread
       await openai.beta.threads.del(lastThreadId); //makes sure aborted threads are cleared
       setConfig(undefined,undefined,false); lastThreadId = undefined;
     }
@@ -419,7 +426,14 @@ export async function generateDocumentation(
       try {
         const files = fs.readdirSync(dir);
         let i = 0;
+        let cont = true; 
         for (let file of files) {
+          if(args.continue && LAST_FILE && cont) {
+            if(file === LAST_FILE) {
+              cont = false; setConfig(undefined,undefined,undefined,false);
+            } else continue;
+          }
+          setConfig(undefined,undefined,undefined,file); //last file read in case of crash
           const fullPath = path.join(dir, file);
           const stat = fs.statSync(fullPath);
 

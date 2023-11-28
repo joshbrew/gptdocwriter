@@ -49,6 +49,9 @@ gptdocwriter --model gpt-4-turbo-1106
 # Clear current assistant before/after generating documentation (will be cleared if instructions are updated)
 gptdocwriter --cleanup
 
+# Restart the thread at the last file read. Do this after a crash if you want to recover your position in the last thread, else it will be deleted on next call
+gptdocwriter --continue
+
 # Tailor the prompt for the AI instead of the default prompt
 gptdocwriter --instructions Write detailed documentation about each file
 
