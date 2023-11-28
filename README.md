@@ -1,4 +1,6 @@
 # Documentation Generation Tool with GPT 4 Turbo!
+![d-status](https://img.shields.io/npm/v/gptdocwriter.svg) 
+![d-downloads](https://img.shields.io/npm/dt/gptdocwriter.svg)
 
 This uses the beta thread and assistant features of the official [openai node API](https://github.com/openai/openai-node). See [Reference](https://platform.openai.com/docs/api-reference/assistants)
 
@@ -25,7 +27,7 @@ entryPoint defaults to current working directory
 
 ## Usage
 
-The various command line arguments include. Combine as needed. Call --apiKey first. Fundamentally this tool just creates a thread to read files and output a file for reach file read, with context building with each file. At the end we write a README.md which should account for the knowledge of your files that GPT accumulated over the process.
+The various command line arguments include. Combine as needed. Call --apiKey first. Fundamentally this tool just creates a thread to read files and output a file for each file read, with context building with each file. At the end we write a README.md which should account for the knowledge of your files that GPT accumulated over the process.
 
 ```bash
 
