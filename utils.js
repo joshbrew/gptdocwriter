@@ -428,12 +428,7 @@ export async function generateDocumentation(
         let i = 0;
         let cont = true; 
         for (let file of files) {
-          if(args.continue && LAST_FILE && cont) {
-            if(file === LAST_FILE) {
-              cont = false; setConfig(undefined,undefined,undefined,false);
-            } else continue;
-          }
-          setConfig(undefined,undefined,undefined,file); //last file read in case of crash
+          
           const fullPath = path.join(dir, file);
           const stat = fs.statSync(fullPath);
 
@@ -446,6 +441,12 @@ export async function generateDocumentation(
           if (stat.isDirectory()) {
             await readFiles(fullPath);
           } else if (fileExtensions.includes(path.extname(file))) {
+            if(args.continue && LAST_FILE && cont) {
+              if(file === LAST_FILE) {
+                cont = false; setConfig(undefined,undefined,undefined,false);
+              } else continue;
+            }
+            setConfig(undefined,undefined,undefined,file); //last file read in case of crash
             console.log(colorText("Documenting file: ", "blue"), file);
             if(i>0 && rateLimitSec > 0) {
               await new Promise((res)=>{
