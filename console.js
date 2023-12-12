@@ -33,43 +33,44 @@ export const colors = {
   
 export function colorText(text, color) {
     return colors.fg[color] + text + colors.reset;
-}
-  
-  //get command line args either "--key value" or "key=value"
+} 
+
+//get command line args either "--key value" or "key=value"
 export const getArgs = (args = process.argv) => {
     const argMap = {};
     let currentKey = null;
-  
+    console.log(args);
     for (let i = 0; i < args.length; i++) {
       const v = args[i];
-      if (v.startsWith('--')) {
-        if (currentKey !== null) {
+      if(currentKey !== null) {
           // Check if currentKey's value is comma-separated and convert to an array if so
-          argMap[currentKey] = argMap[currentKey].includes(',') ? argMap[currentKey].split(',').map(item => item.trim()) : argMap[currentKey].trim();
-          if(argMap[currentKey] == '') argMap[currentKey] = true;
-        }
+          if((args[i+1]?.includes('--') || args[i+1]?.includes('='))) {
+            if(argMap[currentKey] === '') {
+              argMap[currentKey] = true;
+            }
+            currentKey = null;
+          } else {
+            argMap[currentKey] += ((i > 0 && !(args[i-1]?.includes('--') || args[i-1]?.includes('='))) ? (' ' + v) : v);
+            if(argMap[currentKey].startsWith('[') && argMap[currentKey].endsWith(']')){
+              argMap[currentKey] = argMap[currentKey].substring(1,argMap[currentKey].length-1).split(' '); //commas get replaced with spaces so we just do this
+              currentKey = null; //we're gonna assume these are explicit arrays
+            }
+          }
+      } else if (v.startsWith('--')) {
         currentKey = v.replace(/^-+/g, '').trim(); // Remove all leading dashes
         argMap[currentKey] = '';
       } else if (v.includes('=')) {
         const split = v.split('=');
         const key = split[0].replace(/^-+/g, '').trim(); // Remove leading dashes from key
         const value = split[1];
-        argMap[key] = value.includes(',') ? value.split(',').map(item => item.trim()) : value;
-        currentKey = null;
-      } else {
-        if (currentKey !== null) {
-          argMap[currentKey] += ' ' + v;
-        } else {
-          argMap[v] = true;
+        argMap[key] = value;
+        if(argMap[key].startsWith('[') && argMap[key].endsWith(']')){
+          argMap[key] = argMap[key].substring(1,argMap[key].length-1).split(' '); //commas get replaced with spaces so we just do this
+          currentKey = null; //we're gonna assume these are explicit arrays
         }
+        currentKey = key;
       }
-    }
-  
-    if (currentKey !== null) {
-      // Check if currentKey's value is comma-separated and convert to an array if so
-      argMap[currentKey] = argMap[currentKey].includes(',') ? argMap[currentKey].split(',').map(item => item.trim()) : argMap[currentKey].trim();
     }
   
     return argMap;
 };
-  

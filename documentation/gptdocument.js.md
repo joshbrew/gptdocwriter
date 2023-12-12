@@ -17,10 +17,10 @@ gptdocwriter --apiKey sk-abcdefg
 gptdocwriter
 
 # Generate documentation with custom entry point and file extensions
-gptdocwriter --entryPoint path/to/src --extensions js,ts,tsx,jsx
+gptdocwriter --entryPoint path/to/src --extensions [js,ts,tsx,jsx]
 
 # Exclude certain files or directories
-gptdocwriter --excluded server.js,node_modules,dist
+gptdocwriter --excluded [server.js,node_modules,dist]
 ```
 
 The script will use the current working directory by default, but this can be changed using the `--entryPoint` argument. Other arguments allow you to specify:

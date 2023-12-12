@@ -14,7 +14,7 @@ Set API Key (saved to the library folder (keep private!!) in config.txt):
 
 Then, from your desired folder:
 
-`gptdocwriter --initialFiles index.js,utils.js --extensions .js,.jsx --excluded dist,node_modules --model gpt-4-1106-preview`
+`gptdocwriter --initialFiles [index.js,utils.js] --extensions [.js,.jsx] --excluded [dist,node_modules] --model gpt-4-1106-preview`
 
 entryPoint defaults to current working directory
 
@@ -34,17 +34,19 @@ The various command line arguments include. Combine as needed. Call --apiKey fir
 # Set the API key for OpenAI services
 gptdocwriter --apiKey sk-abcdefg
 
+# Alternatively 
+gptdocwriter apiKey=sk-abcdefg
 #defaults to current working directory
 gptdocwriter --entryPoint path/to/src
 
 # Generate documentation for specific files before crawling extensions in the order they appear
-gptdocwriter --initialFiles utils.js,gptdocument.js
+gptdocwriter --initialFiles [utils.js,gptdocument.js]
 
 # Exclude files or directories from being documented
-gptdocwriter --excluded server.js,node_modules,dist
+gptdocwriter --excluded [server.js,node_modules,dist]
 
 # Specify which file extensions to include in the documentation
-gptdocwriter --extensions js,ts,tsx,jsx
+gptdocwriter --extensions [js,ts,tsx,jsx]
 
 # Choose the GPT-4 model variant to use. We are rate limiting for the latest preview for you.
 gptdocwriter --model gpt-4-turbo-1106

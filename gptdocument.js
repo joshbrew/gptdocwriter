@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import {generateDocumentation, args} from './utils.js'
-
+console.log(args);
 // Convert comma-separated string to array
 if(args.apiKey) {
     console.log("Setting api key (saved to this library's install location)");
@@ -35,13 +35,13 @@ gptdocwriter --entryPoint path/to/src
 gptdocwriter --apiKey sk-abcdefg
 
 # Generate documentation for specific files before crawling extensions in the order they appear
-gptdocwriter --initialFiles utils.js,gptdocument.js
+gptdocwriter --initialFiles [utils.js,gptdocument.js]
 
 # Exclude files or directories from being documented
-gptdocwriter --excluded server.js,node_modules,dist
+gptdocwriter --excluded [server.js,node_modules,dist]
 
 # Specify which file extensions to include in the documentation
-gptdocwriter --extensions js,ts,tsx,jsx
+gptdocwriter --extensions [js,ts,tsx,jsx]
 
 # Choose the GPT-4 model variant to use
 gptdocwriter --model gpt-4-turbo-1106

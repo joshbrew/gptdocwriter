@@ -45,7 +45,7 @@ console.log(args.entryPoint); // Retrieve a specific argument
 Usage example with custom argument array:
 
 ```javascript
-const customArgs = getArgs(['--model', 'gpt-4', '--excluded=node_modules,dist']);
+const customArgs = getArgs(['--model', 'gpt-4', '--excluded=[node_modules,dist]']);
 console.log(customArgs);
 ```
 

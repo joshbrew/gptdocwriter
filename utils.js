@@ -22,13 +22,13 @@ gptdocwriter --entryPoint path/to/src
 gptdocwriter --apiKey sk-abcdefg
 
 # Generate documentation for specific files before crawling extensions in the order they appear
-gptdocwriter --initialFiles utils.js,gptdocument.js
+gptdocwriter --initialFiles [utils.js,gptdocument.js]
 
 # Exclude files or directories from being documented
-gptdocwriter --excluded server.js,node_modules,dist
+gptdocwriter --excluded [server.js,node_modules,dist]
 
 # Specify which file extensions to include in the documentation
-gptdocwriter --extensions js,ts,tsx,jsx
+gptdocwriter --extensions [js,ts,tsx,jsx]
 
 # Choose the GPT-4 model variant to use
 gptdocwriter --model gpt-4-turbo-1106
@@ -64,7 +64,6 @@ gptdocwriter --keepThread
 
 // Parse CLI arguments, import to main script
 export const args = getArgs();
-
 
 let instr = `You are a senior developer/engineer receiving source code from applications or libraries, starting with the most critical files in order to recursively document source code for comprehensive developer documentation. 
 
